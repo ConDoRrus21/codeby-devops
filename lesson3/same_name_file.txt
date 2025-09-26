@@ -1,1 +1,1 @@
-content from branch_b
+resolve conflicts
