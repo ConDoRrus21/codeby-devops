@@ -1,0 +1,303 @@
+Script started on 2025-09-29 20:59:11+03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="153" LINES="36"]
+                                                                                                                                                         ]0;kali@pentesting: ~/codeby-devops/lesson4/03_log_script[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/03_log_script[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[1mp[0m[1mp[0m[38;2;153;153;153ms -u $(whoami)[39m[14D[0m[36mp[36ms[39m[39m [32m-[39m[32m-[32me[39m[39m [39m [39m [39m [39m [39m [39m [39m [39m [39m [10D[38;2;153;153;153mF[39m[32me[32mF[39m[?1l>[?2004l
+UID          PID    PPID  C    SZ   RSS PSR STIME TTY          TIME CMD
+root           1       0  0  5627 12904   2 18:17 ?        00:00:01 /sbin/init splash
+root           2       0  0     0     0   2 18:17 ?        00:00:00 [kthreadd]
+root           3       2  0     0     0   1 18:17 ?        00:00:00 [pool_workqueue_release]
+root           4       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-rcu_g]
+root           5       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-rcu_p]
+root           6       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-slub_]
+root           7       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-netns]
+root           8       2  0     0     0   0 18:17 ?        00:00:02 [kworker/0:0-events]
+root          10       2  0     0     0   0 18:17 ?        00:00:00 [kworker/0:0H-events_highpri]
+root          12       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-mm_pe]
+root          13       2  0     0     0   0 18:17 ?        00:00:00 [rcu_tasks_kthread]
+root          14       2  0     0     0   0 18:17 ?        00:00:00 [rcu_tasks_rude_kthread]
+root          15       2  0     0     0   0 18:17 ?        00:00:00 [rcu_tasks_trace_kthread]
+root          16       2  0     0     0   0 18:17 ?        00:00:00 [ksoftirqd/0]
+root          17       2  0     0     0   1 18:17 ?        00:00:05 [rcu_preempt]
+root          18       2  0     0     0   0 18:17 ?        00:00:00 [migration/0]
+root          19       2  0     0     0   0 18:17 ?        00:00:00 [idle_inject/0]
+root          20       2  0     0     0   0 18:17 ?        00:00:00 [cpuhp/0]
+root          21       2  0     0     0   1 18:17 ?        00:00:00 [cpuhp/1]
+root          22       2  0     0     0   1 18:17 ?        00:00:00 [idle_inject/1]
+root          23       2  0     0     0   1 18:17 ?        00:00:01 [migration/1]
+root          24       2  0     0     0   1 18:17 ?        00:00:00 [ksoftirqd/1]
+root          26       2  0     0     0   1 18:17 ?        00:00:00 [kworker/1:0H-events_highpri]
+root          27       2  0     0     0   2 18:17 ?        00:00:00 [cpuhp/2]
+root          28       2  0     0     0   2 18:17 ?        00:00:00 [idle_inject/2]
+root          29       2  0     0     0   2 18:17 ?        00:00:01 [migration/2]
+root          30       2  0     0     0   2 18:17 ?        00:00:00 [ksoftirqd/2]
+root          32       2  0     0     0   2 18:17 ?        00:00:00 [kworker/2:0H-events_highpri]
+root          33       2  0     0     0   3 18:17 ?        00:00:00 [cpuhp/3]
+root          34       2  0     0     0   3 18:17 ?        00:00:00 [idle_inject/3]
+root          35       2  0     0     0   3 18:17 ?        00:00:00 [migration/3]
+root          36       2  0     0     0   3 18:17 ?        00:00:00 [ksoftirqd/3]
+root          42       2  0     0     0   1 18:17 ?        00:00:04 [kworker/u8:3-ext4-rsv-conversion]
+root          43       2  0     0     0   2 18:17 ?        00:00:00 [kdevtmpfs]
+root          44       2  0     0     0   1 18:17 ?        00:00:00 [kworker/R-inet_]
+root          45       2  0     0     0   1 18:17 ?        00:00:00 [kauditd]
+root          47       2  0     0     0   0 18:17 ?        00:00:00 [khungtaskd]
+root          48       2  0     0     0   0 18:17 ?        00:00:00 [oom_reaper]
+root          49       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-write]
+root          50       2  0     0     0   0 18:17 ?        00:00:01 [kcompactd0]
+root          51       2  0     0     0   0 18:17 ?        00:00:00 [ksmd]
+root          52       2  0     0     0   3 18:17 ?        00:00:01 [khugepaged]
+root          53       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-kinte]
+root          54       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-kbloc]
+root          55       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-blkcg]
+root          56       2  0     0     0   1 18:17 ?        00:00:00 [irq/9-acpi]
+root          59       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-tpm_d]
+root          60       2  0     0     0   3 18:17 ?        00:00:00 [kworker/R-edac-]
+root          61       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-devfr]
+root          62       2  0     0     0   2 18:17 ?        00:00:00 [kworker/2:1H-kblockd]
+root          63       2  0     0     0   1 18:17 ?        00:00:00 [kswapd0]
+root          69       2  0     0     0   3 18:17 ?        00:00:00 [kworker/R-kthro]
+root          71       2  0     0     0   1 18:17 ?        00:00:00 [kworker/R-acpi_]
+root          72       2  0     0     0   1 18:17 ?        00:00:00 [kworker/R-mld]
+root          73       2  0     0     0   2 18:17 ?        00:00:00 [kworker/R-ipv6_]
+root          79       2  0     0     0   2 18:17 ?        00:00:00 [kworker/R-kstrp]
+root          83       2  0     0     0   2 18:17 ?        00:00:00 [kworker/u9:0-ttm]
+root          88       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-crypt]
+root         170       2  0     0     0   1 18:17 ?        00:00:01 [kworker/1:1H-kblockd]
+root         172       2  0     0     0   3 18:17 ?        00:00:00 [kworker/3:1H-kblockd]
+root         203       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-ata_s]
+root         211       2  0     0     0   3 18:17 ?        00:00:00 [scsi_eh_0]
+root         212       2  0     0     0   3 18:17 ?        00:00:00 [kworker/R-scsi_]
+root         214       2  0     0     0   1 18:17 ?        00:00:00 [scsi_eh_1]
+root         215       2  0     0     0   3 18:17 ?        00:00:00 [kworker/R-scsi_]
+root         218       2  0     0     0   3 18:17 ?        00:00:00 [scsi_eh_2]
+root         219       2  0     0     0   3 18:17 ?        00:00:00 [kworker/R-scsi_]
+root         242       2  0     0     0   1 18:17 ?        00:00:00 [irq/18-vmwgfx]
+root         244       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-ttm]
+root         247       2  0     0     0   3 18:17 ?        00:00:01 [kworker/3:2H-kblockd]
+root         280       2  0     0     0   3 18:17 ?        00:00:01 [jbd2/sda1-8]
+root         281       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-ext4-]
+root         340       1  0 16953 17800   0 18:17 ?        00:00:00 /usr/lib/systemd/systemd-journald
+root         389       1  0  7334  7452   2 18:17 ?        00:00:00 /usr/lib/systemd/systemd-udevd
+root         451       2  0     0     0   3 18:17 ?        00:00:00 [psimon]
+root         516       1  0  2069  6200   3 18:17 ?        00:00:01 /usr/sbin/haveged --Foreground --verbose=1
+root         554       1  0 77749  7392   3 18:17 ?        00:00:00 /usr/libexec/accounts-daemon
+message+     561       1  0  2715  5632   1 18:17 ?        00:00:01 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activ
+polkitd      564       1  0 96073  9976   3 18:17 ?        00:00:00 /usr/lib/polkit-1/polkitd --no-debug
+root         565       1  0  4766  8704   0 18:17 ?        00:00:00 /usr/lib/systemd/systemd-logind
+root         597       2  0     0     0   0 18:17 ?        00:00:00 [kworker/R-rpcio]
+root         599       2  0     0     0   1 18:17 ?        00:00:00 [kworker/R-xprti]
+root         608       1  0  1663  2560   0 18:17 ?        00:00:00 /usr/sbin/cron -f
+root         623       1  0 83631 20188   3 18:17 ?        00:00:00 /usr/sbin/NetworkManager --no-daemon
+root         631       1  0 79630 12088   0 18:17 ?        00:00:00 /usr/sbin/ModemManager
+root         646       1  0 73257  3204   1 18:17 ?        00:00:04 /usr/sbin/VBoxService
+root         713       1  0 95090  7148   3 18:17 ?        00:00:00 /usr/sbin/lightdm
+root         721       1  0  3385  8192   1 18:17 ?        00:00:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root         725       2  0     0     0   1 18:17 ?        00:00:00 [kworker/u9:1]
+root         726     713  1 118206 180980 3 18:17 tty7     00:02:49 /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -n
+root         728       1  0  2370  2816   1 18:17 tty1     00:00:00 /sbin/agetty -o -p -- \u --noclear - linux
+root         756       2  0     0     0   3 18:17 ?        00:00:00 [psimon]
+rtkit        786       1  0  5706  3200   0 18:17 ?        00:00:00 /usr/libexec/rtkit-daemon
+root         855     713  0 58596  8020   3 18:21 ?        00:00:00 lightdm --session-child 13 24
+kali         862       1  0  5338 11520   2 18:21 ?        00:00:00 /usr/lib/systemd/systemd --user
+kali         863     862  0  5477  3264   3 18:21 ?        00:00:00 (sd-pam)
+kali         878     862  0 29346 17052   3 18:21 ?        00:00:00 /usr/bin/pipewire
+kali         879     862  0 23805  5632   1 18:21 ?        00:00:00 /usr/bin/pipewire -c filter-chain.conf
+kali         881     862  0 160826 33772  2 18:21 ?        00:00:00 /usr/bin/wireplumber
+kali         882     862  0 25348  9216   3 18:21 ?        00:00:00 /usr/bin/pipewire-pulse
+kali         883     862  0  2482  5352   1 18:21 ?        00:00:01 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-acti
+kali         885     862  0 78592  9984   3 18:21 ?        00:00:00 /usr/bin/gnome-keyring-daemon --foreground --components=pkcs11,secrets --control-dire
+kali         910     855  0 84814 24500   2 18:21 ?        00:00:00 xfce4-session
+kali         964       1  0  4287  1548   3 18:21 ?        00:00:00 /usr/bin/VBoxClient --clipboard
+kali         965     964  0 53834  3596   0 18:21 ?        00:00:00 /usr/bin/VBoxClient --clipboard
+kali         979       1  0  4287  1676   3 18:21 ?        00:00:00 /usr/bin/VBoxClient --seamless
+kali         980     979  0 53861  3212   3 18:21 ?        00:00:23 /usr/bin/VBoxClient --seamless
+kali         987       1  0  4287  1676   1 18:21 ?        00:00:00 /usr/bin/VBoxClient --draganddrop
+kali         988     987  0 53990  2956   3 18:21 ?        00:01:12 /usr/bin/VBoxClient --draganddrop
+kali         999     910  0  2434  1548   3 18:21 ?        00:00:00 /usr/bin/ssh-agent x-session-manager
+kali        1010     862  0 95797  7808   1 18:21 ?        00:00:00 /usr/libexec/at-spi-bus-launcher
+kali        1017    1010  0  2361  4736   3 18:21 ?        00:00:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --n
+kali        1029     862  0 59109  8064   3 18:21 ?        00:00:02 /usr/libexec/at-spi2-registryd --use-gnome-session
+kali        1041     862  0 20309  3200   2 18:21 ?        00:00:00 /usr/bin/gpg-agent --supervised
+kali        1043     910  0 316061 116496 0 18:21 ?        00:00:46 xfwm4
+kali        1051       1  0  4287  1420   2 18:21 ?        00:00:00 /usr/bin/VBoxClient --vmsvga
+kali        1052     862  0 77985  7424   3 18:21 ?        00:00:00 /usr/libexec/gvfsd
+kali        1053    1051  0 53888  3212   2 18:21 ?        00:00:04 /usr/bin/VBoxClient --vmsvga
+kali        1063     862  0 114342 6912   0 18:21 ?        00:00:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+kali        1082     910  0 75943 27524   1 18:21 ?        00:00:01 xfsettingsd
+root        1086       1  0 78934  9344   3 18:21 ?        00:00:00 /usr/libexec/upowerd
+kali        1092     910  0 115760 44148  3 18:21 ?        00:00:06 xfce4-panel
+kali        1097     910  0 136703 54964  3 18:21 ?        00:00:12 Thunar --daemon
+kali        1103     910  0 120369 62264  0 18:21 ?        00:00:03 xfdesktop
+kali        1107    1092  0 115006 42396  1 18:21 ?        00:00:01 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/pan
+kali        1111    1092  0 102998 24808  1 18:21 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/pan
+kali        1112    1092  0 85069 27772   1 18:21 ?        00:00:35 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/pan
+kali        1113    1092  0 113944 40960  2 18:21 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/pan
+kali        1114    1092  0 114700 38276  3 18:21 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/pan
+kali        1115    1092  0 96405 38912   1 18:21 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/pan
+kali        1119    1092  0 96368 38620   1 18:21 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/pan
+kali        1137     910  0 15606 36960   3 18:21 ?        00:00:00 /usr/bin/python3 /usr/share/system-config-printer/applet.py
+kali        1144     910  0 76989  6016   1 18:21 ?        00:00:00 /usr/libexec/geoclue-2.0/demos/agent
+kali        1154     910  0 64852 17408   1 18:21 ?        00:00:00 xfce4-power-manager
+kali        1159     910  0 154855 45036  2 18:21 ?        00:00:00 nm-applet
+kali        1161     910  0 64612 16896   3 18:21 ?        00:00:00 /usr/libexec/polkit-mate-authentication-agent-1
+kali        1164     910  0 103427 28544  0 18:21 ?        00:00:00 light-locker
+kali        1165     910  0 230557 8320   0 18:21 ?        00:00:00 xiccd
+kali        1168       1  0  3158  1708   1 18:21 ?        00:00:00 xcape -e Super_L Control_L Escape
+kali        1190     862  0 57590  5376   2 18:21 ?        00:00:00 /usr/libexec/dconf-service
+colord      1193       1  0 79453 14428   0 18:21 ?        00:00:00 /usr/libexec/colord
+kali        1199     862  0 102219 19840  1 18:21 ?        00:00:01 /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
+kali        1209     910  0 128695 52676  1 18:21 ?        00:00:01 /usr/bin/python3 /usr/bin/blueman-applet
+kali        1305     862  0 106531 13056  3 18:21 ?        00:00:00 /usr/libexec/gvfs-udisks2-volume-monitor
+root        1309       1  0 117553 13352  3 18:21 ?        00:00:00 /usr/libexec/udisks2/udisksd
+kali        1321     862  0 76855  6272   3 18:21 ?        00:00:00 /usr/libexec/gvfs-goa-volume-monitor
+kali        1339     862  0 76861  6272   2 18:21 ?        00:00:00 /usr/libexec/gvfs-mtp-volume-monitor
+kali        1344     862  0 97120  7936   3 18:21 ?        00:00:01 /usr/libexec/gvfs-afc-volume-monitor
+kali        1350     862  0 77101  6784   3 18:21 ?        00:00:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+kali        1351     862  0 12301  7808   3 18:21 ?        00:00:00 /usr/libexec/bluetooth/obexd
+kali        1365    1052  0 133346 8704   2 18:21 ?        00:00:00 /usr/libexec/gvfsd-trash --spawner :1.22 /org/gtk/gvfs/exec_spaw/0
+kali        1373     862  0 58488  6528   1 18:21 ?        00:00:00 /usr/libexec/gvfsd-metadata
+kali        1457       1  0 114026 99428  1 18:21 ?        00:00:18 /usr/bin/qterminal
+kali        1468    1457  0  3482  8444   0 18:21 pts/0    00:00:01 /usr/bin/zsh
+kali        1674    1092  0 211080 105896 3 18:22 ?        00:00:13 cherrytree
+kali        1925       1  2 771454 445112 0 18:22 ?        00:03:08 x-www-browser https://pingvinus.ru/note/terminal-script-command):
+kali        1980     862  0 122229 17792  3 18:22 ?        00:00:00 /usr/libexec/xdg-desktop-portal
+kali        1985     862  0 152316 7296   2 18:22 ?        00:00:00 /usr/libexec/xdg-document-portal
+kali        1989     862  0 77678  6784   0 18:22 ?        00:00:00 /usr/libexec/xdg-permission-store
+root        1996    1985  0   624  1536   2 18:22 ?        00:00:00 fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user
+kali        2002     862  0 102078 19200  0 18:22 ?        00:00:00 /usr/libexec/xdg-desktop-portal-gtk
+kali        2038    1925  0 54492 37632   3 18:22 ?        00:00:00 /usr/lib/firefox-esr/firefox-esr -contentproc -parentBuildID 20240603145132 -prefsLen
+kali        2088    1925  3 633478 166576 1 18:22 ?        00:05:38 /usr/lib/firefox-esr/firefox-esr -contentproc -childID 1 -isForBrowser -prefsLen 2533
+root        2132       1  0 81150  7424   0 18:22 ?        00:00:00 /usr/sbin/pcscd --foreground --auto-exit
+kali        2175    1925  0 700363 263084 1 18:22 ?        00:00:45 /usr/lib/firefox-esr/firefox-esr -contentproc -childID 2 -isForBrowser -prefsLen 3500
+kali        2277    1925  0 601252 73204  1 18:22 ?        00:00:00 /usr/lib/firefox-esr/firefox-esr -contentproc -childID 4 -isForBrowser -prefsLen 2974
+kali        2322    1925  0 601252 73228  3 18:22 ?        00:00:00 /usr/lib/firefox-esr/firefox-esr -contentproc -childID 5 -isForBrowser -prefsLen 2974
+root        2393       2  0     0     0   0 18:22 ?        00:00:01 [kworker/0:2H-kblockd]
+kali        2459    1925  0 601533 73148  2 18:22 ?        00:00:00 /usr/lib/firefox-esr/firefox-esr -contentproc -childID 6 -isForBrowser -prefsLen 2999
+kali        5961    1468  0  1379  1920   2 18:29 pts/0    00:00:00 script myterminal.log
+kali        5962    5961  0  2576  6832   2 18:29 pts/1    00:00:00 zsh -i
+root       32106       2  0     0     0   0 19:22 ?        00:00:00 [kworker/0:1]
+root       39886       2  0     0     0   1 19:39 ?        00:00:00 [kworker/1:1-events]
+kali       65051     862  0 76828  6400   0 20:31 ?        00:00:00 /usr/lib/x86_64-linux-gnu/xfce4/xfconf/xfconfd
+root       65168       2  0     0     0   2 20:31 ?        00:00:00 [kworker/u8:1-events_unbound]
+root       65185       2  0     0     0   2 20:31 ?        00:00:00 [kworker/2:3-events]
+kali       66386    1457  0  2584  6564   0 20:33 pts/2    00:00:00 /usr/bin/zsh
+kali       67701    5962  0  2485  3712   3 20:36 pts/1    00:00:00 top
+root       68763       2  0     0     0   2 20:38 ?        00:00:01 [kworker/2:0-events]
+root       68993       2  0     0     0   1 20:39 ?        00:00:00 [kworker/1:0]
+kali       72118    5962  0  1379  2048   2 20:45 pts/1    00:00:00 script ps-log.txt
+kali       72119   72118  0  3408  7316   1 20:45 pts/3    00:00:00 zsh -i
+kali       72577   72119  0  2485  3712   0 20:46 pts/3    00:00:00 top
+root       73618       2  0     0     0   3 20:48 ?        00:00:00 [kworker/3:2-ata_sff]
+root       73722       2  0     0     0   2 20:48 ?        00:00:00 [kworker/u8:0-events_unbound]
+kali       74007     862  0 235271 26040  2 20:49 ?        00:00:00 /usr/lib/x86_64-linux-gnu/tumbler-1/tumblerd
+root       76344       2  0     0     0   3 20:53 ?        00:00:00 [kworker/3:0-mm_percpu_wq]
+kali       77128   72119  0  1379  2176   2 20:55 pts/3    00:00:00 script ps-log.txt
+kali       77129   77128  0  2580  6428   3 20:55 pts/4    00:00:00 zsh -i
+kali       77317   77129  0  2485  3712   0 20:55 pts/4    00:00:00 top
+root       77319       2  0     0     0   0 20:55 ?        00:00:00 [kworker/u8:2-events_unbound]
+root       79045       2  0     0     0   3 20:58 ?        00:00:00 [kworker/3:1-ata_sff]
+kali       79317   77129  0  1379  1920   1 20:59 pts/4    00:00:00 script ps-log.txt
+kali       79318   79317  0  2569  6328   1 20:59 pts/5    00:00:00 zsh -i
+kali       79415   79318 99  2722  4224   3 20:59 pts/5    00:00:00 ps -eF
+                                                                                                                                                         ]0;kali@pentesting: ~/codeby-devops/lesson4/03_log_script
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/03_log_script[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[7m[36mps[39m[7m [7m[32m-u[39m[7m [1m[7m[35m$[1m[7m[34m([0m[39m[7m[36mwhoami[39m[1m[7m[34m)[0m[27m[39m[15D[27m[36mp[27m[36ms[39m[27m [27m[32m-[27m[32mu[39m[27m [27m[1m[35m$[27m[1m[34m([0m[39m[27m[36mw[27m[36mh[27m[36mo[27m[36ma[27m[36mm[27m[36mi[39m[27m[1m[34m)[0m[39m[?1l>[?2004l
+    PID TTY          TIME CMD
+    862 ?        00:00:00 systemd
+    863 ?        00:00:00 (sd-pam)
+    878 ?        00:00:00 pipewire
+    879 ?        00:00:00 pipewire
+    881 ?        00:00:00 wireplumber
+    882 ?        00:00:00 pipewire-pulse
+    883 ?        00:00:01 dbus-daemon
+    885 ?        00:00:00 gnome-keyring-d
+    910 ?        00:00:00 xfce4-session
+    964 ?        00:00:00 VBoxClient
+    965 ?        00:00:00 VBoxClient
+    979 ?        00:00:00 VBoxClient
+    980 ?        00:00:23 VBoxClient
+    987 ?        00:00:00 VBoxClient
+    988 ?        00:01:12 VBoxClient
+    999 ?        00:00:00 ssh-agent
+   1010 ?        00:00:00 at-spi-bus-laun
+   1017 ?        00:00:00 dbus-daemon
+   1029 ?        00:00:02 at-spi2-registr
+   1041 ?        00:00:00 gpg-agent
+   1043 ?        00:00:47 xfwm4
+   1051 ?        00:00:00 VBoxClient
+   1052 ?        00:00:00 gvfsd
+   1053 ?        00:00:04 VBoxClient
+   1063 ?        00:00:00 gvfsd-fuse
+   1082 ?        00:00:01 xfsettingsd
+   1092 ?        00:00:06 xfce4-panel
+   1097 ?        00:00:12 Thunar
+   1103 ?        00:00:03 xfdesktop
+   1107 ?        00:00:01 panel-1-whisker
+   1111 ?        00:00:00 panel-14-systra
+   1112 ?        00:00:35 panel-15-genmon
+   1113 ?        00:00:00 panel-16-pulsea
+   1114 ?        00:00:00 panel-17-notifi
+   1115 ?        00:00:00 panel-18-power-
+   1119 ?        00:00:00 panel-22-action
+   1137 ?        00:00:00 applet.py
+   1144 ?        00:00:00 agent
+   1154 ?        00:00:00 xfce4-power-man
+   1159 ?        00:00:00 nm-applet
+   1161 ?        00:00:00 polkit-mate-aut
+   1164 ?        00:00:00 light-locker
+   1165 ?        00:00:00 xiccd
+   1168 ?        00:00:00 xcape
+   1190 ?        00:00:00 dconf-service
+   1199 ?        00:00:01 xfce4-notifyd
+   1209 ?        00:00:01 blueman-applet
+   1305 ?        00:00:00 gvfs-udisks2-vo
+   1321 ?        00:00:00 gvfs-goa-volume
+   1339 ?        00:00:00 gvfs-mtp-volume
+   1344 ?        00:00:01 gvfs-afc-volume
+   1350 ?        00:00:00 gvfs-gphoto2-vo
+   1351 ?        00:00:00 obexd
+   1365 ?        00:00:00 gvfsd-trash
+   1373 ?        00:00:00 gvfsd-metadata
+   1457 ?        00:00:18 qterminal
+   1468 pts/0    00:00:01 zsh
+   1674 ?        00:00:14 cherrytree
+   1925 ?        00:03:08 x-www-browser
+   1980 ?        00:00:00 xdg-desktop-por
+   1985 ?        00:00:00 xdg-document-po
+   1989 ?        00:00:00 xdg-permission-
+   2002 ?        00:00:00 xdg-desktop-por
+   2038 ?        00:00:00 Socket Process
+   2088 ?        00:05:38 Isolated Web Co
+   2175 ?        00:00:45 WebExtensions
+   2277 ?        00:00:00 Web Content
+   2322 ?        00:00:00 Web Content
+   2459 ?        00:00:00 Web Content
+   5961 pts/0    00:00:00 script
+   5962 pts/1    00:00:00 zsh
+  65051 ?        00:00:00 xfconfd
+  66386 pts/2    00:00:00 zsh
+  67701 pts/1    00:00:00 top
+  72118 pts/1    00:00:00 script
+  72119 pts/3    00:00:00 zsh
+  72577 pts/3    00:00:00 top
+  74007 ?        00:00:00 tumblerd
+  77128 pts/3    00:00:00 script
+  77129 pts/4    00:00:00 zsh
+  77317 pts/4    00:00:00 top
+  79317 pts/4    00:00:00 script
+  79318 pts/5    00:00:00 zsh
+  79539 pts/5    00:00:00 ps
+                                                                                                                                                         ]0;kali@pentesting: ~/codeby-devops/lesson4/03_log_script
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/03_log_script[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[4mt[24m[4mt[24m[38;2;153;153;153mop &[39m[4mt[39m[4mo[24m[24m[36mt[24m[36mo[36mp[39m[39m [1m[34m&[0m[39m[?1l>[?2004l
+[1] 79608
+                                                                                                                                                         ]0;kali@pentesting: ~/codeby-devops/lesson4/03_log_script
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/03_log_script[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[?1l>
+[1]  + suspended (signal)  top
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/03_log_script[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[4mk[24m[4mk[24m[38;2;153;153;153mill -9 78542[39m[12D[4mk[39m[4mi[24m[4mk[4mi[39m[4ml[24m[24m[36mk[24m[36mi[24m[36ml[36ml[39m[39m [32m-[39m[32m-[32m9[39m[39m [39m7[39m9[39m [39m [39m 608[?1l>[?2004l
+                                                                                                                                                         ]0;kali@pentesting: ~/codeby-devops/lesson4/03_log_script
+[1]  + killed     top
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/03_log_script[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[4me[24m[4me[24m[38;2;153;153;153mxit[39m[24m[36me[36mx[39m[39m[4me[39m[4mx[39m[4mi[24m[24m[36me[24m[36mx[24m[36mi[36mt[39m[?1l>[?2004l
+
+Script done on 2025-09-29 21:00:03+03:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,355 @@
+Script started on 2025-09-29 23:05:51+03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="117" LINES="42"]
+                                                                                                                     ]0;kali@pentesting: ~/codeby-devops/lesson4/05_nginx_install[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/05_nginx_install[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[7m[36msystemctl[39m[7m is-enabled [1m[7mnginx-custom[0m[27m[33D[27m[36ms[27m[36my[27m[36ms[27m[36mt[27m[36me[27m[36mm[27m[36mc[27m[36mt[27m[36ml[39m[27m [27mi[27ms[27m-[27me[27mn[27ma[27mb[27ml[27me[27md[27m [27m[1mn[27m[1mg[27m[1mi[27m[1mn[27m[1mx[27m[1m-[27m[1mc[27m[1mu[27m[1ms[27m[1mt[27m[1mo[27m[1mm[0m[?1l>[?2004l[12D[0mn[0mg[0mi[0mn[0mx[0m-[0mc[0mu[0ms[0mt[0mo[0mm
+enabled
+                                                                                                                     ]0;kali@pentesting: ~/codeby-devops/lesson4/05_nginx_install
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/05_nginx_install[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[7m[4m[32msudo[24m[39m[7m [7m[36msystemctl[39m[7m status nginx-custom [7m[32m--no-pager[27m[39m[45D[27m[4m[32ms[27m[4m[32mu[27m[4m[32md[27m[4m[32mo[24m[39m[27m [27m[36ms[27m[36my[27m[36ms[27m[36mt[27m[36me[27m[36mm[27m[36mc[27m[36mt[27m[36ml[39m[27m [27ms[27mt[27ma[27mt[27mu[27ms[27m [27mn[27mg[27mi[27mn[27mx[27m-[27mc[27mu[27ms[27mt[27mo[27mm[27m [27m[32m-[27m[32m-[27m[32mn[27m[32mo[27m[32m-[27m[32mp[27m[32ma[27m[32mg[27m[32me[27m[32mr[39m[?1l>[?2004l
+[sudo] password for kali: 
+[0;1;32m●[0m nginx-custom.service - NGINX Custom Service
+     Loaded: loaded (]8;;file://pentesting/etc/systemd/system/nginx-custom.service/etc/systemd/system/nginx-custom.service]8;;; [0;1;32menabled[0m; preset: [0;1;38;5;185mdisabled[0m)
+     Active: [0;1;32mactive (running)[0m since Mon 2025-09-29 22:54:58 MSK; 12min ago
+   Main PID: 138103 (nginx)
+      Tasks: 5 (limit: 9437)
+     Memory: 5.0M (peak: 5.8M)
+        CPU: 36ms
+     CGroup: /system.slice/nginx-custom.service
+             ├─[0;38;5;245m138103 "nginx: master process /usr/sbin/nginx -g daemon off;"[0m
+             ├─[0;38;5;245m138105 "nginx: worker process"[0m
+             ├─[0;38;5;245m138106 "nginx: worker process"[0m
+             ├─[0;38;5;245m138107 "nginx: worker process"[0m
+             └─[0;38;5;245m138108 "nginx: worker process"[0m
+
+Sep 29 22:54:58 pentesting systemd[1]: Started nginx-custom.service - NGINX Custom Service.
+                                                                                                                     ]0;kali@pentesting: ~/codeby-devops/lesson4/05_nginx_install
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/05_nginx_install[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[7m[4m[32msudo[24m[39m[7m [7m[36msystemctl[39m[7m show [1m[7mnginx-custom[0m[27m[32D[27m[4m[32ms[27m[4m[32mu[27m[4m[32md[27m[4m[32mo[24m[39m[27m [27m[36ms[27m[36my[27m[36ms[27m[36mt[27m[36me[27m[36mm[27m[36mc[27m[36mt[27m[36ml[39m[27m [27ms[27mh[27mo[27mw[27m [27m[1mn[27m[1mg[27m[1mi[27m[1mn[27m[1mx[27m[1m-[27m[1mc[27m[1mu[27m[1ms[27m[1mt[27m[1mo[27m[1mm[0m[?1l>[?2004l[12D[0mn[0mg[0mi[0mn[0mx[0m-[0mc[0mu[0ms[0mt[0mo[0mm
+[?1h=Type=simple[m
+ExitType=main[m
+Restart=on-failure[m
+RestartMode=normal[m
+NotifyAccess=none[m
+RestartUSec=100ms[m
+RestartSteps=0[m
+RestartMaxDelayUSec=infinity[m
+RestartUSecNext=100ms[m
+TimeoutStartUSec=1min 30s[m
+TimeoutStopUSec=1min 30s[m
+TimeoutAbortUSec=1min 30s[m
+TimeoutStartFailureMode=terminate[m
+TimeoutStopFailureMode=terminate[m
+RuntimeMaxUSec=infinity[m
+RuntimeRandomizedExtraUSec=0[m
+WatchdogUSec=0[m
+WatchdogTimestampMonotonic=0[m
+RootDirectoryStartOnly=no[m
+RemainAfterExit=no[m
+GuessMainPID=yes[m
+MainPID=138103[m
+ControlPID=0[m
+FileDescriptorStoreMax=0[m
+NFileDescriptorStore=0[m
+FileDescriptorStorePreserve=restart[m
+StatusErrno=0[m
+Result=success[m
+ReloadResult=success[m
+CleanResult=success[m
+UID=[not set][m
+GID=[not set][m
+NRestarts=0[m
+OOMPolicy=stop[m
+ReloadSignal=1[m
+ExecMainStartTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+ExecMainStartTimestampMonotonic=16635057388[m
+ExecMainExitTimestampMonotonic=0[m
+ExecMainPID=138103[m
+ExecMainCode=0[m
+ExecMainStatus=0[m
+[7mlines 1-41[27m[K[KExecStart={ path=/usr/sbin/nginx ; argv[]=/usr/sbin/nginx -g daemon off; ; ignore_errors=no ; start_time=[Mon 2025-0[m[7m>[27m
+[7mlines 2-42[27m[K[KExecStartEx={ path=/usr/sbin/nginx ; argv[]=/usr/sbin/nginx -g daemon off; ; flags= ; start_time=[Mon 2025-09-29 22:[m[7m>[27m
+[7mlines 3-43[27m[K[KExecReload={ path=/usr/sbin/nginx ; argv[]=/usr/sbin/nginx -s reload ; ignore_errors=no ; start_time=[n/a] ; stop_ti[m[7m>[27m
+[7mlines 4-44[27m[K[KExecReloadEx={ path=/usr/sbin/nginx ; argv[]=/usr/sbin/nginx -s reload ; flags= ; start_time=[n/a] ; stop_time=[n/a][m[7m>[27m
+[7mlines 5-45[27m[K[KExecStop={ path=/usr/sbin/nginx ; argv[]=/usr/sbin/nginx -s quit ; ignore_errors=no ; start_time=[n/a] ; stop_time=[[m[7m>[27m
+[7mlines 6-46[27m[K[KExecStopEx={ path=/usr/sbin/nginx ; argv[]=/usr/sbin/nginx -s quit ; flags= ; start_time=[n/a] ; stop_time=[n/a] ; p[m[7m>[27m
+[7mlines 7-47[27m[K[KSlice=system.slice[m
+[7mlines 8-48[27m[K[KControlGroup=/system.slice/nginx-custom.service[m
+[7mlines 9-49[27m[K[KControlGroupId=7417[m
+[7mlines 10-50[27m[K[KMemoryCurrent=5320704[m
+[7mlines 11-51[27m[K[KMemoryPeak=6156288[m
+[7mlines 12-52[27m[K[KMemorySwapCurrent=0[m
+[7mlines 13-53[27m[K[KMemorySwapPeak=0[m
+[7mlines 14-54[27m[K[KMemoryZSwapCurrent=0[m
+[7mlines 15-55[27m[K[KMemoryAvailable=6634930176[m
+[7mlines 16-56[27m[K[KCPUUsageNSec=36522000[m
+[7mlines 17-57[27m[K[KTasksCurrent=5[m
+[7mlines 18-58[27m[K[KIPIngressBytes=[no data][m
+[7mlines 19-59[27m[K[KIPIngressPackets=[no data][m
+[7mlines 20-60[27m[K[KIPEgressBytes=[no data][m
+[7mlines 21-61[27m[K[KIPEgressPackets=[no data][m
+[7mlines 22-62[27m[K[KIOReadBytes=[not set][m
+[7mlines 23-63[27m[K[KIOReadOperations=[not set][m
+[7mlines 24-64[27m[K[KIOWriteBytes=[not set][m
+[7mlines 25-65[27m[K[KIOWriteOperations=[not set][m
+[7mlines 26-66[27m[K[KDelegate=no[m
+[7mlines 27-67[27m[K[KCPUAccounting=yes[m
+[7mlines 28-68[27m[K[KCPUWeight=[not set][m
+[7mlines 29-69[27m[K[KStartupCPUWeight=[not set][m
+[7mlines 30-70[27m[K[KCPUShares=[not set][m
+[7mlines 31-71[27m[K[KStartupCPUShares=[not set][m
+[7mlines 32-72[27m[K[KCPUQuotaPerSecUSec=infinity[m
+[7mlines 33-73[27m[K[KCPUQuotaPeriodUSec=infinity[m
+[7mlines 34-74[27m[K[KIOAccounting=no[m
+[7mlines 35-75[27m[K[KIOWeight=[not set][m
+[7mlines 36-76[27m[K[KStartupIOWeight=[not set][m
+[7mlines 37-77[27m[K[KBlockIOAccounting=no[m
+[7mlines 38-78[27m[K[KBlockIOWeight=[not set][m
+[7mlines 39-79[27m[K[KStartupBlockIOWeight=[not set][m
+[7mlines 40-80[27m[K[KMemoryAccounting=yes[m
+[7mlines 41-81[27m[K[KDefaultMemoryLow=0[m
+[7mlines 42-82[27m[K[KDefaultStartupMemoryLow=0[m
+[7mlines 43-83[27m[K[KDefaultMemoryMin=0[m
+[7mlines 44-84[27m[K[KMemoryMin=0[m
+[7mlines 45-85[27m[K[KMemoryLow=0[m
+[7mlines 46-86[27m[K[KStartupMemoryLow=0[m
+[7mlines 47-87[27m[K[KMemoryHigh=infinity[m
+[7mlines 48-88[27m[K[KStartupMemoryHigh=infinity[m
+[7mlines 49-89[27m[K[KMemoryMax=infinity[m
+[7mlines 50-90[27m[K[KStartupMemoryMax=infinity[m
+[7mlines 51-91[27m[K[KMemorySwapMax=infinity[m
+[7mlines 52-92[27m[K[KStartupMemorySwapMax=infinity[m
+[7mlines 53-93[27m[K[KMemoryZSwapMax=infinity[m
+[7mlines 54-94[27m[K[KStartupMemoryZSwapMax=infinity[m
+[7mlines 55-95[27m[K[KMemoryLimit=infinity[m
+[7mlines 56-96[27m[K[KDevicePolicy=auto[m
+[7mlines 57-97[27m[K[KTasksAccounting=yes[m
+[7mlines 58-98[27m[K[KTasksMax=9437[m
+[7mlines 59-99[27m[K[KIPAccounting=no[m
+[7mlines 60-100[27m[K[KManagedOOMSwap=auto[m
+[7mlines 61-101[27m[K[KManagedOOMMemoryPressure=auto[m
+[7mlines 62-102[27m[K[KManagedOOMMemoryPressureLimit=0[m
+[7mlines 63-103[27m[K[KManagedOOMPreference=none[m
+[7mlines 64-104[27m[K[KMemoryPressureWatch=auto[m
+[7mlines 65-105[27m[K[KMemoryPressureThresholdUSec=200ms[m
+[7mlines 66-106[27m[K[KCoredumpReceive=no[m
+[7mlines 67-107[27m[K[KUMask=0022[m
+[7mlines 68-108[27m[K[KLimitCPU=infinity[m
+[7mlines 69-109[27m[K[KLimitCPUSoft=infinity[m
+[7mlines 70-110[27m[K[KLimitFSIZE=infinity[m
+[7mlines 71-111[27m[K[KLimitFSIZESoft=infinity[m
+[7mlines 72-112[27m[K[KLimitDATA=infinity[m
+[7mlines 73-113[27m[K[KLimitDATASoft=infinity[m
+[7mlines 74-114[27m[K[KLimitSTACK=infinity[m
+[7mlines 75-115[27m[K[KLimitSTACKSoft=8388608[m
+[7mlines 76-116[27m[K[KLimitCORE=infinity[m
+[7mlines 77-117[27m[K[KLimitCORESoft=0[m
+[7mlines 78-118[27m[K[KLimitRSS=infinity[m
+[7mlines 79-119[27m[K[KLimitRSSSoft=infinity[m
+[7mlines 80-120[27m[K[KLimitNOFILE=65536[m
+[7mlines 81-121[27m[K[KLimitNOFILESoft=65536[m
+[7mlines 82-122[27m[K[KLimitAS=infinity[m
+[7mlines 83-123[27m[K[KLimitASSoft=infinity[m
+[7mlines 84-124[27m[K[KLimitNPROC=31458[m
+[7mlines 85-125[27m[K[KLimitNPROCSoft=31458[m
+[7mlines 86-126[27m[K[KLimitMEMLOCK=8388608[m
+[7mlines 87-127[27m[K[KLimitMEMLOCKSoft=8388608[m
+[7mlines 88-128[27m[K[KLimitLOCKS=infinity[m
+[7mlines 89-129[27m[K[KLimitLOCKSSoft=infinity[m
+[7mlines 90-130[27m[K[KLimitSIGPENDING=31458[m
+[7mlines 91-131[27m[K[KLimitSIGPENDINGSoft=31458[m
+[7mlines 92-132[27m[K[KLimitMSGQUEUE=819200[m
+[7mlines 93-133[27m[K[KLimitMSGQUEUESoft=819200[m
+[7mlines 94-134[27m[K[KLimitNICE=0[m
+[7mlines 95-135[27m[K[KLimitNICESoft=0[m
+[7mlines 96-136[27m[K[KLimitRTPRIO=0[m
+[7mlines 97-137[27m[K[KLimitRTPRIOSoft=0[m
+[7mlines 98-138[27m[K[KLimitRTTIME=infinity[m
+[7mlines 99-139[27m[K[KLimitRTTIMESoft=infinity[m
+[7mlines 100-140[27m[K[KRootEphemeral=no[m
+[7mlines 101-141[27m[K[KOOMScoreAdjust=0[m
+[7mlines 102-142[27m[K[KCoredumpFilter=0x33[m
+[7mlines 103-143[27m[K[KNice=0[m
+[7mlines 104-144[27m[K[KIOSchedulingClass=2[m
+[7mlines 105-145[27m[K[KIOSchedulingPriority=4[m
+[7mlines 106-146[27m[K[KCPUSchedulingPolicy=0[m
+[7mlines 107-147[27m[K[KCPUSchedulingPriority=0[m
+[7mlines 108-148[27m[K[KCPUAffinityFromNUMA=no[m
+[7mlines 109-149[27m[K[KNUMAPolicy=n/a[m
+[7mlines 110-150[27m[K[KTimerSlackNSec=50000[m
+[7mlines 111-151[27m[K[KCPUSchedulingResetOnFork=no[m
+[7mlines 112-152[27m[K[KNonBlocking=no[m
+[7mlines 113-153[27m[K[KStandardInput=null[m
+[7mlines 114-154[27m[K[KStandardOutput=journal[m
+[7mlines 115-155[27m[K[KStandardError=inherit[m
+[7mlines 116-156[27m[K[KTTYReset=no[m
+[7mlines 117-157[27m[K[KTTYVHangup=no[m
+[7mlines 118-158[27m[K[KTTYVTDisallocate=no[m
+[7mlines 119-159[27m[K[KSyslogPriority=30[m
+[7mlines 120-160[27m[K[KSyslogLevelPrefix=yes[m
+[7mlines 121-161[27m[K[KSyslogLevel=6[m
+[7mlines 122-162[27m[K[KSyslogFacility=3[m
+[7mlines 123-163[27m[K[KLogLevelMax=-1[m
+[7mlines 124-164[27m[K[KLogRateLimitIntervalUSec=0[m
+[7mlines 125-165[27m[K[KLogRateLimitBurst=0[m
+[7mlines 126-166[27m[K[KSecureBits=0[m
+[7mlines 127-167[27m[K[KCapabilityBoundingSet=cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_s[m[7m>[27m
+[7mlines 128-168[27m[K[KDynamicUser=no[m
+[7mlines 129-169[27m[K[KSetLoginEnvironment=no[m
+[7mlines 130-170[27m[K[KRemoveIPC=no[m
+[7mlines 131-171[27m[K[KPrivateTmp=no[m
+[7mlines 132-172[27m[K[KPrivateDevices=no[m
+[7mlines 133-173[27m[K[KProtectClock=no[m
+[7mlines 134-174[27m[K[KProtectKernelTunables=no[m
+[7mlines 135-175[27m[K[KProtectKernelModules=no[m
+[7mlines 136-176[27m[K[KProtectKernelLogs=no[m
+[7mlines 137-177[27m[K[KProtectControlGroups=no[m
+[7mlines 138-178[27m[K[KPrivateNetwork=no[m
+[7mlines 139-179[27m[K[KPrivateUsers=no[m
+[7mlines 140-180[27m[K[KPrivateMounts=no[m
+[7mlines 141-181[27m[K[KPrivateIPC=no[m
+[7mlines 142-182[27m[K[KProtectHome=no[m
+[7mlines 143-183[27m[K[KProtectSystem=no[m
+[7mlines 144-184[27m[K[KSameProcessGroup=no[m
+[7mlines 145-185[27m[K[KUtmpMode=init[m
+[7mlines 146-186[27m[K[KIgnoreSIGPIPE=yes[m
+[7mlines 147-187[27m[K[KNoNewPrivileges=no[m
+[7mlines 148-188[27m[K[KSystemCallErrorNumber=2147483646[m
+[7mlines 149-189[27m[K[KLockPersonality=no[m
+[7mlines 150-190[27m[K[KRuntimeDirectoryPreserve=no[m
+[7mlines 151-191[27m[K[KRuntimeDirectoryMode=0755[m
+[7mlines 152-192[27m[K[KStateDirectoryMode=0755[m
+[7mlines 153-193[27m[K[KCacheDirectoryMode=0755[m
+[7mlines 154-194[27m[K[KLogsDirectoryMode=0755[m
+[7mlines 155-195[27m[K[KConfigurationDirectoryMode=0755[m
+[7mlines 156-196[27m[K[KTimeoutCleanUSec=infinity[m
+[7mlines 157-197[27m[K[KMemoryDenyWriteExecute=no[m
+[7mlines 158-198[27m[K[KRestrictRealtime=no[m
+[7mlines 159-199[27m[K[KRestrictSUIDSGID=no[m
+[7mlines 160-200[27m[K[KRestrictNamespaces=no[m
+[7mlines 161-201[27m[K[KMountAPIVFS=no[m
+[7mlines 162-202[27m[K[KKeyringMode=private[m
+[7mlines 163-203[27m[K[KProtectProc=default[m
+[7mlines 164-204[27m[K[KProcSubset=all[m
+[7mlines 165-205[27m[K[KProtectHostname=no[m
+[7mlines 166-206[27m[K[KMemoryKSM=no[m
+[7mlines 167-207[27m[K[KRootImagePolicy=root=verity+signed+encrypted+unprotected+absent:usr=verity+signed+encrypted+unprotected+absent:home=[m[7m>[27m
+[7mlines 168-208[27m[K[KMountImagePolicy=root=verity+signed+encrypted+unprotected+absent:usr=verity+signed+encrypted+unprotected+absent:home[m[7m>[27m
+[7mlines 169-209[27m[K[KExtensionImagePolicy=root=verity+signed+encrypted+unprotected+absent:usr=verity+signed+encrypted+unprotected+absent:[m[7m>[27m
+[7mlines 170-210[27m[K[KKillMode=control-group[m
+[7mlines 171-211[27m[K[KKillSignal=15[m
+[7mlines 172-212[27m[K[KRestartKillSignal=15[m
+[7mlines 173-213[27m[K[KFinalKillSignal=9[m
+[7mlines 174-214[27m[K[KSendSIGKILL=yes[m
+[7mlines 175-215[27m[K[KSendSIGHUP=no[m
+[7mlines 176-216[27m[K[KWatchdogSignal=6[m
+[7mlines 177-217[27m[K[KId=nginx-custom.service[m
+[7mlines 178-218[27m[K[KNames=nginx-custom.service[m
+[7mlines 179-219[27m[K[KRequires=system.slice sysinit.target[m
+[7mlines 180-220[27m[K[KWants=network.target[m
+[7mlines 181-221[27m[K[KWantedBy=multi-user.target[m
+[7mlines 182-222[27m[K[KConflicts=shutdown.target[m
+[7mlines 183-223[27m[K[KBefore=shutdown.target multi-user.target[m
+[7mlines 184-224[27m[K[KAfter=system.slice network.target sysinit.target systemd-journald.socket basic.target[m
+[7mlines 185-225[27m[K[KDescription=NGINX Custom Service[m
+[7mlines 186-226[27m[K[KLoadState=loaded[m
+[7mlines 187-227[27m[K[KActiveState=active[m
+[7mlines 188-228[27m[K[KFreezerState=running[m
+[7mlines 189-229[27m[K[KSubState=running[m
+[7mlines 190-230[27m[K[KFragmentPath=/etc/systemd/system/nginx-custom.service[m
+[7mlines 191-231[27m[K[KUnitFileState=enabled[m
+[7mlines 192-232[27m[K[KUnitFilePreset=disabled[m
+[7mlines 193-233[27m[K[KStateChangeTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+[7mlines 194-234[27m[K[KStateChangeTimestampMonotonic=16635057974[m
+[7mlines 195-235[27m[K[KInactiveExitTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+[7mlines 196-236[27m[K[KInactiveExitTimestampMonotonic=16635057974[m
+[7mlines 197-237[27m[K[KActiveEnterTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+[7mlines 198-238[27m[K[KActiveEnterTimestampMonotonic=16635057974[m
+[7mlines 199-239[27m[K[KActiveExitTimestampMonotonic=0[m
+[7mlines 200-240[27m[K[KInactiveEnterTimestampMonotonic=0[m
+[7mlines 201-241[27m[K[KCanStart=yes[m
+[7mlines 202-242[27m[K[KCanStop=yes[m
+[7mlines 203-243[27m[K[KCanReload=yes[m
+[7mlines 204-244[27m[K[KCanIsolate=no[m
+[7mlines 205-245[27m[K[KCanFreeze=yes[m
+[7mlines 206-246[27m[K[KStopWhenUnneeded=no[m
+[7mlines 207-247[27m[K[KRefuseManualStart=no[m
+[7mlines 208-248[27m[K[KRefuseManualStop=no[m
+[7mlines 209-249[27m[K[KAllowIsolate=no[m
+[7mlines 210-250[27m[K[KDefaultDependencies=yes[m
+[7mlines 211-251[27m[K[KSurviveFinalKillSignal=no[m
+[7mlines 212-252[27m[K[KOnSuccessJobMode=fail[m
+[7mlines 213-253[27m[K[KOnFailureJobMode=replace[m
+[7mlines 214-254[27m[K[KIgnoreOnIsolate=no[m
+[7mlines 215-255[27m[K[KNeedDaemonReload=no[m
+[7mlines 216-256[27m[K[KJobTimeoutUSec=infinity[m
+[7mlines 217-257[27m[K[KJobRunningTimeoutUSec=infinity[m
+[7mlines 218-258[27m[K[KJobTimeoutAction=none[m
+[7mlines 219-259[27m[K[KConditionResult=yes[m
+[7mlines 220-260[27m[K[KAssertResult=yes[m
+[7mlines 221-261[27m[K[KConditionTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+[7mlines 222-262[27m[K[KConditionTimestampMonotonic=16635019257[m
+[7mlines 223-263[27m[K[KAssertTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+[7mlines 224-264[27m[K[KAssertTimestampMonotonic=16635019259[m
+[7mlines 225-265[27m[K[KTransient=no[m
+[7mlines 226-266[27m[K[KPerpetual=no[m
+[7mlines 227-267[27m[K[KStartLimitIntervalUSec=10s[m
+[7mlines 228-268[27m[K[KStartLimitBurst=5[m
+[7mlines 229-269[27m[K[KStartLimitAction=none[m
+[7mlines 230-270[27m[K[KFailureAction=none[m
+[7mlines 231-271[27m[K[KSuccessAction=none[m
+[7mlines 232-272[27m[K[KInvocationID=c919b80a57eb49f58b9dd6825ea18c1a[m
+[7mlines 233-273[27m[K[KCollectMode=inactive[m
+[7mlines 234-274[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K [KESCESC[KESCESC[K[7mlines 234-274/274 (END)[27m[K[K [KESCESC[KOO[KBB[K[K[7mlines 234-274/274 (END)[27m[K[K [KESCESC[KOO[KDD[H[2J[HStateChangeTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+StateChangeTimestampMonotonic=16635057974[m
+InactiveExitTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+InactiveExitTimestampMonotonic=16635057974[m
+ActiveEnterTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+ActiveEnterTimestampMonotonic=16635057974[m
+ActiveExitTimestampMonotonic=0[m
+InactiveEnterTimestampMonotonic=0[m
+CanStart=yes[m
+CanStop=yes[m
+CanReload=yes[m
+CanIsolate=no[m
+CanFreeze=yes[m
+StopWhenUnneeded=no[m
+RefuseManualStart=no[m
+RefuseManualStop=no[m
+AllowIsolate=no[m
+DefaultDependencies=yes[m
+SurviveFinalKillSignal=no[m
+OnSuccessJobMode=fail[m
+OnFailureJobMode=replace[m
+IgnoreOnIsolate=no[m
+NeedDaemonReload=no[m
+JobTimeoutUSec=infinity[m
+JobRunningTimeoutUSec=infinity[m
+JobTimeoutAction=none[m
+ConditionResult=yes[m
+AssertResult=yes[m
+ConditionTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+ConditionTimestampMonotonic=16635019257[m
+AssertTimestamp=Mon 2025-09-29 22:54:58 MSK[m
+AssertTimestampMonotonic=16635019259[m
+Transient=no[m
+Perpetual=no[m
+StartLimitIntervalUSec=10s[m
+StartLimitBurst=5[m
+StartLimitAction=none[m
+FailureAction=none[m
+SuccessAction=none[m
+InvocationID=c919b80a57eb49f58b9dd6825ea18c1a[m
+CollectMode=inactive[m
+[7mlines 234-274/274 (END)[27m[K[K [KESCESC[KOO[KAA[K[HMUnitFilePreset=disabled[m
+[42;1H[K[7mlines 233-273/274 100%[27m[K[K [KESCESC[KOO[KBB[KCollectMode=inactive[m
+[7mlines 234-274/274 (END)[27m[K[K [KESCESC[KOO[KBB[K[K[7mlines 234-274/274 (END)[27m[K[K [KESCESC[KOO[KBB[K[K[7mlines 234-274/274 (END)[27m[K[K[K[7mlines 234-274/274 (END)[27m[K[K[?1l>
+                                                                                                                     ]0;kali@pentesting: ~/codeby-devops/lesson4/05_nginx_install
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/05_nginx_install[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[7m[4m[32msudo[24m[39m[7m [7m[36msystemctl[39m[7m status nginx [7m[32m--no-pager[27m[39m[38D[27m[4m[32ms[27m[4m[32mu[27m[4m[32md[27m[4m[32mo[24m[39m[27m [27m[36ms[27m[36my[27m[36ms[27m[36mt[27m[36me[27m[36mm[27m[36mc[27m[36mt[27m[36ml[39m[27m [27ms[27mt[27ma[27mt[27mu[27ms[27m [27mn[27mg[27mi[27mn[27mx[27m [27m[32m-[27m[32m-[27m[32mn[27m[32mo[27m[32m-[27m[32mp[27m[32ma[27m[32mg[27m[32me[27m[32mr[39m[?1l>[?2004l
+○ nginx.service
+     Loaded: masked (Reason: Unit nginx.service is masked.)
+     Active: inactive (dead)
+                                                                                                                     ]0;kali@pentesting: ~/codeby-devops/lesson4/05_nginx_install
+[0m[27m[24m[J[32m┌──([1m[32m[34mkali㉿pentesting[0m[34m[32m)-[[1m[32m[39m~/codeby-devops/lesson4/05_nginx_install[0m[32m]
+└─[1m[32m[34m$[0m[34m[39m [K[?1h=[?2004h[4me[24m[4me[24m[38;2;153;153;153mxit[39m[24m[36me[36mx[39m[39m[4me[39m[4mx[39m[4mi[24m[24m[36me[24m[36mx[24m[36mi[36mt[39m[?1l>[?2004l
+
+Script done on 2025-09-29 23:09:30+03:00 [COMMAND_EXIT_CODE="3"]
