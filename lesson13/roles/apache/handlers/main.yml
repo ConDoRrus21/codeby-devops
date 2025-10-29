@@ -1,0 +1,5 @@
+---
+- name: restart apache
+  service:
+    name: "{{ (ansible_facts['os_family'] == 'Debian') | ternary(apache_service_name_debian, apache_service_name_redhat) }}"
+    state: restarted

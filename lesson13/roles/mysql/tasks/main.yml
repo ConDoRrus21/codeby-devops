@@ -1,0 +1,53 @@
+---
+- name: Install required packages (Debian)
+  apt:
+    name: "{{ mysql_packages_debian }}"
+    state: present
+    update_cache: yes
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install required packages (RedHat)
+  yum:
+    name: "{{ mysql_packages_redhat }}"
+    state: present
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Ensure database service is enabled and started
+  service:
+    name: "{{ (ansible_facts['os_family'] == 'Debian') | ternary(mysql_service_name_debian, mysql_service_name_redhat) }}"
+    state: started
+    enabled: yes
+
+- name: Wait for MySQL socket
+  wait_for:
+    port: 3306
+    host: 127.0.0.1
+    timeout: 30
+
+- name: Ensure root user has correct password (MariaDB)
+  mysql_user:
+    name: root
+    host_all: yes
+    password: "{{ mysql_root_password }}"
+    login_user: root
+    login_password: "{{ mysql_root_password | default('') }}"
+    check_implicit_admin: yes
+    state: present
+
+
+- name: Create wordpress database
+  community.mysql.mysql_db:
+    name: "{{ mysql_wordpress_db }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+- name: Create wordpress user
+  community.mysql.mysql_user:
+    name: "{{ mysql_wordpress_user }}"
+    password: "{{ mysql_wordpress_password }}"
+    priv: "{{ mysql_wordpress_db }}.*:ALL"
+    host: "%"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
