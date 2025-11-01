@@ -1,0 +1,22 @@
+---
+apache_packages_debian:
+  - apache2
+  - php
+  - php-mysql
+  - libapache2-mod-php
+  - php-cli
+  - php-gd
+
+apache_packages_redhat:
+  - httpd
+  - php
+  - php-mysqlnd
+  - php-cli
+  - php-gd
+
+apache_service_name_debian: apache2
+apache_service_name_redhat: httpd
+
+apache_site_conf: wordpress.conf
+apache_site_path: /etc/apache2/sites-available
+apache_document_root: /var/www/wordpress

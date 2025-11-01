@@ -1,0 +1,15 @@
+<?php
+define('DB_NAME', '{{ mysql_wordpress_db }}');
+define('DB_USER', '{{ mysql_wordpress_user }}');
+define('DB_PASSWORD', '{{ mysql_wordpress_password }}');
+define('DB_HOST', '127.0.0.1');
+define('DB_CHARSET', 'utf8');
+define('DB_COLLATE', '');
+{% for k,v in {'AUTH_KEY':'put your unique phrase here','SECURE_AUTH_KEY':'put your unique phrase here','LOGGED_IN_KEY':'put your unique phrase here','NONCE_KEY':'put your unique phrase here'}.items() %}
+define('{{ k }}', '{{ v }}');
+{% endfor %}
+$table_prefix  = 'wp_';
+define('WP_DEBUG', false);
+if ( !defined('ABSPATH') )
+    define('ABSPATH', dirname(__FILE__) . '/');
+require_once ABSPATH . 'wp-settings.php';

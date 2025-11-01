@@ -1,0 +1,18 @@
+---
+mysql_root_password: "CfvsqcjqrbqGfhjkm!"
+mysql_wordpress_db: "wordpress"
+mysql_wordpress_user: "codeby"
+mysql_wordpress_password: "CnjqrbqGfhjkm!"
+
+mysql_packages_debian:
+  - mariadb-server
+  - mariadb-client
+  - python3-mysqldb
+
+mysql_packages_redhat:
+  - mariadb-server
+  - mariadb
+  - python3-PyMySQL
+
+mysql_service_name_debian: mariadb
+mysql_service_name_redhat: mariadb

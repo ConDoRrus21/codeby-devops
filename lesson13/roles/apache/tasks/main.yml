@@ -1,0 +1,39 @@
+---
+- name: Install apache & php packages (Debian)
+  apt:
+    name: "{{ apache_packages_debian }}"
+    state: present
+    update_cache: yes
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install apache & php packages (RedHat)
+  yum:
+    name: "{{ apache_packages_redhat }}"
+    state: present
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Ensure apache service is enabled and started
+  service:
+    name: "{{ (ansible_facts['os_family'] == 'Debian') | ternary(apache_service_name_debian, apache_service_name_redhat) }}"
+    state: started
+    enabled: yes
+
+- name: Enable mod_rewrite (Debian)
+  command: a2enmod rewrite
+  when: ansible_facts['os_family'] == 'Debian'
+  notify: restart apache
+
+
+- name: Deploy Apache site configuration
+  template:
+    src: wordpress.conf.j2
+    dest: "{{ (ansible_facts['os_family'] == 'Debian') | ternary(apache_site_path + '/' + apache_site_conf, '/etc/httpd/conf.d/' + apache_site_conf) }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart apache
+
+- name: On Debian enable site
+  ansible.builtin.command: a2ensite wordpress.conf
+  notify: restart apache
+

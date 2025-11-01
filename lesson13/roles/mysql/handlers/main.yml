@@ -1,0 +1,5 @@
+---
+- name: restart mysql
+  service:
+    name: "{{ (ansible_facts['os_family'] == 'Debian') | ternary(mysql_service_name_debian, mysql_service_name_redhat) }}"
+    state: restarted
