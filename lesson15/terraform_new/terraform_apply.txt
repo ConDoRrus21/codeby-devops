@@ -1,0 +1,207 @@
+┌──(kali㉿kali)-[~/PycharmProjects/codeby-devops/lesson15/terraform_new]
+└─$ terraform apply
+module.network_data.data.yandex_vpc_network.vpc: Reading...
+module.network_data.data.yandex_vpc_network.vpc: Read complete after 0s [id=enpqd47e0npk3t2ankg0]
+module.network_data.data.yandex_vpc_subnet.subnets["fl8ldc0lsjcbarm362r4"]: Reading...
+module.network_data.data.yandex_vpc_subnet.subnets["e9b2gqe0401d52ujvrjn"]: Reading...
+module.network_data.data.yandex_vpc_subnet.subnets["e2l8ggcl2opsjpgc77l9"]: Reading...
+module.network_data.data.yandex_vpc_subnet.subnets["e9b2gqe0401d52ujvrjn"]: Read complete after 1s [id=e9b2gqe0401d52ujvrjn]
+module.network_data.data.yandex_vpc_subnet.subnets["fl8ldc0lsjcbarm362r4"]: Read complete after 1s [id=fl8ldc0lsjcbarm362r4]
+module.network_data.data.yandex_vpc_subnet.subnets["e2l8ggcl2opsjpgc77l9"]: Read complete after 1s [id=e2l8ggcl2opsjpgc77l9]
+module.greating-VM.data.yandex_compute_image.os_image: Reading...
+module.greating-VM.data.yandex_compute_image.os_image: Read complete after 0s [id=fd8afra9ojd21ihubhn2]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.greating-VM.yandex_compute_instance.vm will be created
+  + resource "yandex_compute_instance" "vm" {
+      + allow_stopping_for_update = true
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hardware_generation       = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + maintenance_grace_period  = (known after apply)
+      + maintenance_policy        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPAFMpUaALZ4JKufe13snUvH4t+avM3i1gvGNlmX8On codeby@kali"
+        }
+      + name                      = "module-vm"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v3"
+      + service_account_id        = "ajevh8avsqt7uvdqvj5s"
+      + status                    = (known after apply)
+      + zone                      = "ru-central1-a"
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8afra9ojd21ihubhn2"
+              + name        = (known after apply)
+              + size        = 10
+              + snapshot_id = (known after apply)
+              + type        = "network-ssd"
+            }
+        }
+
+      + network_interface {
+          + index          = (known after apply)
+          + ip_address     = (known after apply)
+          + ipv4           = true
+          + ipv6           = (known after apply)
+          + ipv6_address   = (known after apply)
+          + mac_address    = (known after apply)
+          + nat            = true
+          + nat_ip_address = (known after apply)
+          + nat_ip_version = (known after apply)
+          + subnet_id      = "e9b2gqe0401d52ujvrjn"
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + all_subnets     = {
+      + e2l8ggcl2opsjpgc77l9 = {
+          + id             = "e2l8ggcl2opsjpgc77l9"
+          + name           = "private"
+          + route_table_id = "enpsodrjno6lb47n7rkp"
+          + v4_cidr_blocks = [
+              + "10.129.0.0/24",
+            ]
+          + zone           = "ru-central1-b"
+        }
+      + e9b2gqe0401d52ujvrjn = {
+          + id             = "e9b2gqe0401d52ujvrjn"
+          + name           = "public"
+          + route_table_id = ""
+          + v4_cidr_blocks = [
+              + "10.128.0.0/24",
+            ]
+          + zone           = "ru-central1-a"
+        }
+      + fl8ldc0lsjcbarm362r4 = {
+          + id             = "fl8ldc0lsjcbarm362r4"
+          + name           = "imported"
+          + route_table_id = ""
+          + v4_cidr_blocks = [
+              + "10.130.0.0/24",
+            ]
+          + zone           = "ru-central1-d"
+        }
+    }
+  + available_zones = [
+      + "ru-central1-b",
+      + "ru-central1-a",
+      + "ru-central1-d",
+    ]
+  + selected_subnet = {
+      + id             = "e9b2gqe0401d52ujvrjn"
+      + name           = "public"
+      + route_table_id = ""
+      + v4_cidr_blocks = [
+          + "10.128.0.0/24",
+        ]
+      + zone           = "ru-central1-a"
+    }
+  + vm_info         = {
+      + external_ip   = (known after apply)
+      + instance_id   = (known after apply)
+      + instance_name = "module-vm"
+      + internal_ip   = (known after apply)
+      + subnet_id     = "e9b2gqe0401d52ujvrjn"
+      + zone          = "ru-central1-a"
+    }
+  + vpc_info        = {
+      + vpc_id   = "enpqd47e0npk3t2ankg0"
+      + vpc_name = "default"
+    }
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.greating-VM.yandex_compute_instance.vm: Creating...
+module.greating-VM.yandex_compute_instance.vm: Still creating... [10s elapsed]
+module.greating-VM.yandex_compute_instance.vm: Still creating... [20s elapsed]
+module.greating-VM.yandex_compute_instance.vm: Still creating... [30s elapsed]
+module.greating-VM.yandex_compute_instance.vm: Creation complete after 37s [id=fhm9iah3itvjp2m9a0u7]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.                                                                                                           
+                                                                                                                                                                      
+Outputs:                                                                                                                                                              
+                                                                                                                                                                      
+all_subnets = {                                                                                                                                                       
+  "e2l8ggcl2opsjpgc77l9" = {
+    "id" = "e2l8ggcl2opsjpgc77l9"
+    "name" = "private"
+    "route_table_id" = "enpsodrjno6lb47n7rkp"
+    "v4_cidr_blocks" = tolist([
+      "10.129.0.0/24",
+    ])
+    "zone" = "ru-central1-b"
+  }
+  "e9b2gqe0401d52ujvrjn" = {
+    "id" = "e9b2gqe0401d52ujvrjn"
+    "name" = "public"
+    "route_table_id" = ""
+    "v4_cidr_blocks" = tolist([
+      "10.128.0.0/24",
+    ])
+    "zone" = "ru-central1-a"
+  }
+  "fl8ldc0lsjcbarm362r4" = {
+    "id" = "fl8ldc0lsjcbarm362r4"
+    "name" = "imported"
+    "route_table_id" = ""
+    "v4_cidr_blocks" = tolist([
+      "10.130.0.0/24",
+    ])
+    "zone" = "ru-central1-d"
+  }
+}
+available_zones = tolist([
+  "ru-central1-b",
+  "ru-central1-a",
+  "ru-central1-d",
+])
+selected_subnet = {
+  "id" = "e9b2gqe0401d52ujvrjn"
+  "name" = "public"
+  "route_table_id" = ""
+  "v4_cidr_blocks" = tolist([
+    "10.128.0.0/24",
+  ])
+  "zone" = "ru-central1-a"
+}
+vm_info = {
+  "external_ip" = "51.250.7.118"
+  "instance_id" = "fhm9iah3itvjp2m9a0u7"
+  "instance_name" = "module-vm"
+  "internal_ip" = "10.128.0.14"
+  "subnet_id" = "e9b2gqe0401d52ujvrjn"
+  "zone" = "ru-central1-a"
+}
+vpc_info = {
+  "vpc_id" = "enpqd47e0npk3t2ankg0"
+  "vpc_name" = "default"
+}
