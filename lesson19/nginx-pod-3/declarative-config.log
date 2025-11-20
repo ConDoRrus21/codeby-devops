@@ -1,0 +1,56 @@
+NAME          READY   STATUS    RESTARTS   AGE
+nginx-pod     1/1     Running   0          37m
+nginx-pod-2   1/1     Running   0          5m56s
+nginx-pod-3   1/1     Running   0          25s
+Name:             nginx-pod-3
+Namespace:        codeby
+Priority:         0
+Service Account:  default
+Node:             codeby-cluster-control-plane/172.19.0.2
+Start Time:       Thu, 20 Nov 2025 00:12:09 +0300
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.9
+IPs:
+  IP:  10.244.0.9
+Containers:
+  nginx:
+    Container ID:   containerd://1e60134945b15072c4fe11a6944c1cf0454aa238756f896c5ddbfb0d8acb7ae5
+    Image:          nginx:latest
+    Image ID:       docker.io/library/nginx@sha256:553f64aecdc31b5bf944521731cd70e35da4faed96b2b7548a3d8e2598c52a42
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 20 Nov 2025 00:12:11 +0300
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-t52vj (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-t52vj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  48s   default-scheduler  Successfully assigned codeby/nginx-pod-3 to codeby-cluster-control-plane
+  Normal  Pulling    48s   kubelet            Pulling image "nginx:latest"
+  Normal  Pulled     46s   kubelet            Successfully pulled image "nginx:latest" in 1.17s (1.17s including waiting). Image size: 59772801 bytes.
+  Normal  Created    46s   kubelet            Created container: nginx
+  Normal  Started    46s   kubelet            Started container nginx
