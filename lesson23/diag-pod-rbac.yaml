@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: diag-sa
+  namespace: dev
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: diag-role
+  namespace: dev
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: diag-rolebinding
+  namespace: dev
+subjects:
+- kind: ServiceAccount
+  name: diag-sa
+  namespace: dev
+roleRef:
+  kind: Role
+  name: diag-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: diag-pod
+  namespace: dev
+spec:
+  serviceAccountName: diag-sa
+  containers:
+  - name: diag
+    image: bitnami/kubectl:latest
+    command:
+    - /bin/sh
+    - -c
+    - |
+      echo "Listing wordpress pods in namespace dev..."
+      while true; do
+        date
+        kubectl get pods -n dev -l app=wordpress -o wide
+        echo "----"
+        sleep 30
+      done
+  restartPolicy: Always
