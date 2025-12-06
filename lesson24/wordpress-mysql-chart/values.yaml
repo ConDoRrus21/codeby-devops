@@ -1,0 +1,48 @@
+namespace: dev
+
+mysql:
+  image: mysql:8
+  replicas: 1
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1024Mi"
+    limits:
+      cpu: "1"
+      memory: "2Gi"
+  storage:
+    size: 5Gi
+    storageClassName: local-storage
+  nodeSelectorHostname: multinode-cluster-worker
+  service:
+    port: 3306
+  rootPassword: change-me
+
+wordpress:
+  image: wordpress:6.4-apache
+  replicas: 1
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  storage:
+    size: 5Gi
+    storageClassName: local-storage
+  nodeSelectorHostname: multinode-cluster-worker2
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30080
+  db:
+    host: mysql
+    user: root
+    name: wordpress
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilization: 50
