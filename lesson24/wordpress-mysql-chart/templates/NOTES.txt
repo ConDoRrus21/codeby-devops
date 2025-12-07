@@ -1,0 +1,7 @@
+Thank you for installing release {{ .Release.Name }} in namespace {{ .Release.Namespace }}.
+MySQL root password need to set during installation:
+helm install {{ .Release.Name }} . \
+--namespace {{ .Values.namespace }} \
+--set mysql.rootPassword='your password'
+
+

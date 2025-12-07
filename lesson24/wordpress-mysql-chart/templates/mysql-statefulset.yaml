@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: {{ .Values.namespace }}
+spec:
+  serviceName: "mysql"
+  replicas: {{ .Values.mysql.replicas }}
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - {{ .Values.mysql.nodeSelectorHostname | quote }}
+      containers:
+      - name: mysql
+        image: {{ .Values.mysql.image }}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: MYSQL_DATABASE
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: MYSQL_USER
+        resources:
+          requests:
+            cpu: {{ .Values.mysql.resources.requests.cpu | quote }}
+            memory: {{ .Values.mysql.resources.requests.memory | quote }}
+          limits:
+            cpu: {{ .Values.mysql.resources.limits.cpu | quote }}
+            memory: {{ .Values.mysql.resources.limits.memory | quote }}
+        ports:
+        - containerPort: {{ .Values.mysql.service.port }}
+          name: mysql
+        volumeMounts:
+        - name: mysql-pv
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-pv
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: {{ .Values.mysql.storage.storageClassName | quote }}
+      resources:
+        requests:
+          storage: {{ .Values.mysql.storage.size | quote }}
