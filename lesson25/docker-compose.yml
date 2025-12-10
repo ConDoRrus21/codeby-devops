@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  jenkins-server:
+    depends_on:
+      - jenkins-docker
+    image: ${DOCKER_REGISTRY}/${JENKINS_SERVER_IMAGE}:${JENKINS_SERVER_TAG}
+    container_name: ${JENKINS_SERVER_IMAGE}
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    environment:
+      DOCKER_HOST: tcp://jenkins-docker:2375
+      DOCKER_CERT_PATH: ""
+      DOCKER_TLS_VERIFY: ""
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    networks:
+      - jenkins-network
+  jenkins-docker:
+    image: docker:dind
+    container_name: jenkins-docker
+    privileged: true
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+    restart: unless-stopped
+    ports:
+      - "2375:2375"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    networks:
+      - jenkins-network
+volumes:
+  jenkins-data:
+
+networks:
+  jenkins-network:
+    driver: bridge
