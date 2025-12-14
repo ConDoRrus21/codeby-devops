@@ -115,7 +115,7 @@ pipeline {
 
     post {
         always {
-            // архивируем все .jar, чтобы можно было скачивать
+            // архиввация всех .jar
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
     }
