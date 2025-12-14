@@ -1,0 +1,122 @@
+pipeline {
+    agent { label 'maven' }
+
+    tools {
+        maven 'Maven3'
+        jdk   'JDK25'
+    }
+
+    environment {
+        APPS = "lesson26/simple-java-maven-app,lesson26/hello-jenkins,lesson26/hello-devops"
+    }
+
+    stages {
+        stage('Detect changes') {
+            steps {
+                script {
+                    // список изменённых файлов в этом коммите
+                    def diff = sh(
+                        script: 'git diff --name-only HEAD~1 HEAD || git diff --name-only HEAD',
+                        returnStdout: true
+                    ).trim().split('\n') as List
+
+                    echo "Changed files: ${diff}"
+
+                    // директории приложений, в которых есть изменения
+                    changedApps = []
+                    env.APPS.split(',').each { app ->
+                        if (diff.any { it.startsWith("${app}/") }) {
+                            changedApps << app
+                        }
+                    }
+
+                    if (changedApps.isEmpty()) {
+                        echo "No app changes detected, skipping build."
+                    } else {
+                        echo "Apps to build: ${changedApps}"
+                    }
+                }
+            }
+        }
+
+        stage('Build and Test in parallel') {
+            when {
+                expression { return changedApps && changedApps.size() > 0 }
+            }
+            parallel {
+                stage('simple-java-maven-app') {
+                    when {
+                        expression { return changedApps.contains('simple-java-maven-app') }
+                    }
+                    stages {
+                        stage('Build simple') {
+                            steps {
+                                dir('lesson26/simple-java-maven-app') {
+                                    sh 'mvn -B -Dmaven.test.failure.ignore=false clean package'
+                                }
+                            }
+                        }
+                        stage('Deploy simple') {
+                            steps {
+                                dir('lesson26/simple-java-maven-app') {
+                                    sh 'java -jar target/*.jar &'
+                                }
+                            }
+                        }
+                    }
+                }
+
+                stage('hello-jenkins') {
+                    when {
+                        expression { return changedApps.contains('hello-jenkins') }
+                    }
+                    stages {
+                        stage('Build jenkins') {
+                            steps {
+                                dir('lesson26/hello-jenkins') {
+                                    sh 'mvn -B -Dmaven.test.failure.ignore=false clean package'
+                                }
+                            }
+                        }
+                        stage('Deploy jenkins') {
+                            steps {
+                                dir('lesson26/hello-jenkins') {
+                                    sh 'java -jar target/*.jar &'
+                                }
+                            }
+                        }
+                    }
+                }
+
+                stage('hello-devops') {
+                    when {
+                        expression { return changedApps.contains('hello-devops') }
+                    }
+                    stages {
+                        stage('Build devops') {
+                            steps {
+                                dir('lesson26/hello-devops') {
+                                    sh 'mvn -B -Dmaven.test.failure.ignore=false clean package'
+                                }
+                            }
+                        }
+                        stage('Deploy devops') {
+                            steps {
+                                dir('lesson26/hello-devops') {
+                                    sh 'java -jar target/*.jar &'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // архивируем все .jar, чтобы можно было скачивать
+            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        }
+    }
+}
