@@ -1,0 +1,243 @@
+Branch indexing
+20:32:13 Connecting to https://api.github.com using ConDoRrus21/****** (GitHub PAT for codeby-devops)
+Obtained lesson26/Jenkinsfile from 24742d1c4c7571b71d948bad8b8b35843b34d4cd
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on maven-agent in /home/kali/jenkins-agent/workspace/multi-build_lesson26
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential github-condorrus21-pat
+Fetching changes from the remote Git repository
+Fetching without tags
+ > git rev-parse --resolve-git-dir /home/kali/jenkins-agent/workspace/multi-build_lesson26/.git # timeout=10
+ > git config remote.origin.url https://github.com/ConDoRrus21/codeby-devops.git # timeout=10
+Fetching upstream changes from https://github.com/ConDoRrus21/codeby-devops.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.51.0'
+using GIT_ASKPASS to set credentials GitHub PAT for codeby-devops
+ > git fetch --no-tags --force --progress -- https://github.com/ConDoRrus21/codeby-devops.git +refs/heads/lesson26:refs/remotes/origin/lesson26 # timeout=10
+Checking out Revision 24742d1c4c7571b71d948bad8b8b35843b34d4cd (lesson26)
+Commit message: "fix hello-jenkins message to pass tests"
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 24742d1c4c7571b71d948bad8b8b35843b34d4cd # timeout=10
+ > git rev-list --no-walk dd12baf26d03280d93d075e27faaaddfeef233e8 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Detect changes)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ git diff --name-only HEAD~1 HEAD
+[Pipeline] echo
+Changed files: [lesson26/hello-jenkins/src/main/java/com/mycompany/app/App.java]
+[Pipeline] echo
+CHANGED_APPS = 'lesson26/hello-jenkins'
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build and Test in parallel)
+[Pipeline] parallel
+[Pipeline] { (Branch: simple-java-maven-app)
+[Pipeline] { (Branch: hello-jenkins)
+[Pipeline] { (Branch: hello-devops)
+[Pipeline] stage
+[Pipeline] { (simple-java-maven-app)
+[Pipeline] stage
+[Pipeline] { (hello-jenkins)
+[Pipeline] stage
+[Pipeline] { (hello-devops)
+Stage "simple-java-maven-app" skipped due to when conditional
+[Pipeline] getContext
+Stage "hello-devops" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] stage
+[Pipeline] { (Build simple)
+[Pipeline] stage
+[Pipeline] { (Build devops)
+Stage "simple-java-maven-app" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+Stage "hello-devops" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] tool
+[Pipeline] // stage
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy simple)
+[Pipeline] envVarsForTool
+[Pipeline] stage
+[Pipeline] { (Deploy devops)
+Stage "simple-java-maven-app" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+Stage "hello-devops" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] tool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] }
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build jenkins)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dir
+Running in /home/kali/jenkins-agent/workspace/multi-build_lesson26/lesson26/hello-jenkins
+[Pipeline] {
+[Pipeline] sh
++ mvn -B clean package
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/kali/jenkins-agent/tools/hudson.tasks.Maven_MavenInstallation/Maven3/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.mycompany.app:my-app >----------------------
+[INFO] Building my-app 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ my-app ---
+[INFO] Deleting /home/kali/jenkins-agent/workspace/multi-build_lesson26/lesson26/hello-jenkins/target
+[INFO]
+[INFO] --- enforcer:3.6.2:enforce (enforce-maven) @ my-app ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
+[INFO] skip non existing resourceDirectory /home/kali/jenkins-agent/workspace/multi-build_lesson26/lesson26/hello-jenkins/src/main/resources
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ my-app ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 17] to target/classes
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ my-app ---
+[INFO] skip non existing resourceDirectory /home/kali/jenkins-agent/workspace/multi-build_lesson26/lesson26/hello-jenkins/src/test/resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ my-app ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 17] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.2.5:test (default-test) @ my-app ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.mycompany.app.AppTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.347 s -- in com.mycompany.app.AppTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.5.0:jar (default-jar) @ my-app ---
+[INFO] Building jar: /home/kali/jenkins-agent/workspace/multi-build_lesson26/lesson26/hello-jenkins/target/my-app-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.770 s
+[INFO] Finished at: 2025-12-15T23:32:50+03:00
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy jenkins)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dir
+Running in /home/kali/jenkins-agent/workspace/multi-build_lesson26/lesson26/hello-jenkins
+[Pipeline] {
+[Pipeline] sh
++ java -jar target/my-app-1.0-SNAPSHOT.jar
+Hello Jenkins!
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ ls **/target/*.jar
++ echo
+[Pipeline] echo
+No JAR artifacts to archive.
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+
+GitHub has been notified of this commit’s build result
+
+Finished: SUCCESS
