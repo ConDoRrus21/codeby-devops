@@ -1,0 +1,397 @@
+Branch indexing
+Connecting to https://api.github.com using ConDoRrus21/****** (GitHub PAT for codeby-devops)
+Obtained lesson27/Jenkinsfile from dec8fb59d4b4211c9d9765866c01870d629f4a9f
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on maven-agent in /home/kali/jenkins-agent/workspace/multi-build_lesson27
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential github-condorrus21-pat
+ > git rev-parse --resolve-git-dir /home/kali/jenkins-agent/workspace/multi-build_lesson27/.git # timeout=10
+Fetching changes from the remote Git repository
+Fetching without tags
+ > git config remote.origin.url https://github.com/ConDoRrus21/codeby-devops.git # timeout=10
+Fetching upstream changes from https://github.com/ConDoRrus21/codeby-devops.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.51.0'
+using GIT_ASKPASS to set credentials GitHub PAT for codeby-devops
+ > git fetch --no-tags --force --progress -- https://github.com/ConDoRrus21/codeby-devops.git +refs/heads/lesson27:refs/remotes/origin/lesson27 # timeout=10
+Checking out Revision dec8fb59d4b4211c9d9765866c01870d629f4a9f (lesson27)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f dec8fb59d4b4211c9d9765866c01870d629f4a9f # timeout=10
+Commit message: "change app java file  of hello jenkins app for testiing QG"
+ > git rev-list --no-walk 2f8db5c0e73f38a0baadfbc160942393d97648ca # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Detect changes)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ git diff --name-only HEAD~1 HEAD
+[Pipeline] echo
+Changed files: [lesson27/hello-jenkins/README.md, lesson27/hello-jenkins/src/main/java/com/mycompany/app/App.java]
+[Pipeline] echo
+CHANGED_APPS = 'lesson27/hello-jenkins'
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build, Test & Sonar in parallel)
+[Pipeline] parallel
+[Pipeline] { (Branch: simple-java-maven-app)
+[Pipeline] { (Branch: hello-jenkins)
+[Pipeline] { (Branch: hello-devops)
+[Pipeline] stage
+[Pipeline] { (simple-java-maven-app)
+[Pipeline] stage
+[Pipeline] { (hello-jenkins)
+[Pipeline] stage
+[Pipeline] { (hello-devops)
+Stage "simple-java-maven-app" skipped due to when conditional
+[Pipeline] getContext
+Stage "hello-devops" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] stage
+[Pipeline] { (Build & Sonar simple)
+[Pipeline] stage
+[Pipeline] { (Build & Sonar devops)
+Stage "simple-java-maven-app" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+Stage "hello-devops" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] tool
+[Pipeline] // stage
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy simple)
+[Pipeline] stage
+[Pipeline] { (Deploy devops)
+Stage "simple-java-maven-app" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+Stage "hello-devops" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] envVarsForTool
+[Pipeline] // stage
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] }
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build & Sonar jenkins)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dir
+Running in /home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins
+[Pipeline] {
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonarqube
+[Pipeline] {
+[Pipeline] sh
++ mvn -B clean verify sonar:sonar -Dsonar.projectKey=codeby-devops-lesson27 -Dsonar.projectName=codeby-devops-lesson27 -Dsonar.java.binaries=target/classes
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/kali/jenkins-agent/tools/hudson.tasks.Maven_MavenInstallation/Maven3/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[WARNING] The artifact org.codehaus.mojo:sonar-maven-plugin:jar:4.0.0.4121 has been relocated to org.sonarsource.scanner.maven:sonar-maven-plugin:jar:4.0.0.4121: SonarQube plugin was moved to SonarSource organisation
+[INFO] 
+[INFO] ----------------------< com.mycompany.app:my-app >----------------------
+[INFO] Building my-app 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ my-app ---
+[INFO] Deleting /home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins/target
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (enforce-maven) @ my-app ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
+[INFO] skip non existing resourceDirectory /home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ my-app ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ my-app ---
+[INFO] skip non existing resourceDirectory /home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ my-app ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ my-app ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.mycompany.app.AppTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.316 s -- in com.mycompany.app.AppTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ my-app ---
+[INFO] Building jar: /home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins/target/my-app-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ----------------------< com.mycompany.app:my-app >----------------------
+[INFO] Building my-app 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- sonar:4.0.0.4121:sonar (default-cli) @ my-app ---
+[WARNING] 15:37:25.668 Using an unspecified version instead of an explicit plugin version may introduce breaking analysis changes at an unwanted time. It is highly recommended to use an explicit version, e.g. 'org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121'.
+[INFO] 15:37:29.066 Java 25 Oracle Corporation (64-bit)
+[INFO] 15:37:29.068 Linux 6.12.38+kali-amd64 (amd64)
+[INFO] 15:37:44.625 User cache: /home/kali/.sonar/cache
+[INFO] 15:37:47.710 Communicating with SonarQube Server 25.12.0.117093
+[WARNING] Direct modification of testCompileSourceRoots through iterator.remove() is deprecated and will not work in Maven 4.0.0. Please use the add/remove methods instead. If you're using a plugin that causes this warning, please upgrade to the latest version and report an issue if the warning persists. To disable these warnings, set -Dmaven.project.sourceRoots.warningsDisabled=true on the command line, in the .mvn/maven.config file, or in project POM properties.
+[INFO] 15:37:48.167 Default locale: "en_US", source code encoding: "UTF-8"
+[WARNING] 15:37:57.414 Property 'env.SONARQUBE_SCANNER_PARAMS' is encrypted. The encryption of scanner properties is deprecated and will soon be removed.
+[INFO] 15:38:06.551 Load global settings
+[INFO] 15:38:08.146 Load global settings (done) | time=1591ms
+[INFO] 15:38:08.438 Server id: 147B411E-AZstyK_SclUHiUy0DM6f
+[INFO] 15:38:08.537 Loading required plugins
+[INFO] 15:38:08.541 Load plugins index
+[INFO] 15:38:08.859 Load plugins index (done) | time=319ms
+[INFO] 15:38:08.860 Load/download plugins
+[INFO] 15:38:09.082 Load/download plugins (done) | time=222ms
+[INFO] 15:38:13.792 Process project properties
+[INFO] 15:38:13.976 Process project properties (done) | time=185ms
+[INFO] 15:38:14.057 Project key: codeby-devops-lesson27
+[INFO] 15:38:14.060 Base dir: /home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins
+[INFO] 15:38:14.061 Working dir: /home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins/target/sonar
+[INFO] 15:38:14.144 Load project settings for component key: 'codeby-devops-lesson27'
+[INFO] 15:38:14.230 Load project settings for component key: 'codeby-devops-lesson27' (done) | time=86ms
+[INFO] 15:38:14.611 Load quality profiles
+[INFO] 15:38:17.007 Load quality profiles (done) | time=2395ms
+[INFO] 15:38:17.177 Auto-configuring with CI 'Jenkins'
+[INFO] 15:38:17.772 Load active rules
+[INFO] 15:38:23.488 Load active rules (done) | time=5716ms
+[INFO] 15:38:23.525 Load analysis cache
+[INFO] 15:38:23.673 Load analysis cache (202 bytes) | time=148ms
+[INFO] 15:38:24.982 Preprocessing files...
+[INFO] 15:38:31.452 2 languages detected in 3 preprocessed files (done) | time=6402ms
+[INFO] 15:38:31.492 0 files ignored because of scm ignore settings
+[INFO] 15:38:31.635 Loading plugins for detected languages
+[INFO] 15:38:31.642 Load/download plugins
+[INFO] 15:38:32.141 Load/download plugins (done) | time=499ms
+[INFO] 15:38:35.587 Load project repositories
+[INFO] 15:38:38.747 Load project repositories (done) | time=3160ms
+[INFO] 15:38:38.948 Indexing files...
+[INFO] 15:38:38.950 Project configuration:
+[INFO] 15:38:39.192 3 files indexed (done) | time=238ms
+[INFO] 15:38:39.269 Quality profile for java: Sonar way
+[INFO] 15:38:39.276 Quality profile for xml: Sonar way
+[INFO] 15:38:39.277 ------------- Run sensors on module codeby-devops-lesson27
+[INFO] 15:38:41.386 Load metrics repository
+[INFO] 15:38:42.284 Load metrics repository (done) | time=898ms
+[INFO] 15:39:05.816 Sensor JavaSensor [java]
+[INFO] 15:39:06.044 Configured Java source version (sonar.java.source): 17, preview features enabled (sonar.java.enablePreview): false
+[INFO] 15:39:06.780 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[INFO] 15:39:06.798 Using ECJ batch to parse 1 Main java source files with batch size 104 KB.
+[INFO] 15:39:13.677 Starting batch processing.
+[INFO] 15:39:19.262 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[INFO] 15:39:23.702 50% analyzed
+[INFO] 15:39:27.293 100% analyzed
+[INFO] 15:39:27.294 Batch processing: Done.
+[INFO] 15:39:27.314 Did not optimize analysis for any files, performed a full analysis for all 1 files.
+[INFO] 15:39:27.326 Using ECJ batch to parse 1 Test java source files with batch size 104 KB.
+[INFO] 15:39:27.469 Starting batch processing.
+[INFO] 15:39:28.866 100% analyzed
+[INFO] 15:39:28.866 Batch processing: Done.
+[INFO] 15:39:28.874 Did not optimize analysis for any files, performed a full analysis for all 1 files.
+[INFO] 15:39:28.876 No "Generated" source files to scan.
+[INFO] 15:39:28.881 Sensor JavaSensor [java] (done) | time=23117ms
+[INFO] 15:39:28.882 Sensor SurefireSensor [java]
+[INFO] 15:39:28.929 parsing [/home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins/target/surefire-reports]
+[INFO] 15:39:30.418 Sensor SurefireSensor [java] (done) | time=1536ms
+[INFO] 15:39:30.424 Sensor XML Sensor [xml]
+[INFO] 15:39:30.531 1 source file to be analyzed
+[INFO] 15:39:34.203 1/1 source file has been analyzed
+[INFO] 15:39:34.204 Sensor XML Sensor [xml] (done) | time=3780ms
+[INFO] 15:39:34.205 Sensor JaCoCo XML Report Importer [jacoco]
+[INFO] 15:39:34.233 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[INFO] 15:39:34.255 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[INFO] 15:39:34.256 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=50ms
+[INFO] 15:39:34.256 Sensor IaC hadolint report Sensor [iac]
+[INFO] 15:39:34.300 Sensor IaC hadolint report Sensor [iac] (done) | time=44ms
+[INFO] 15:39:34.307 Sensor Java Config Sensor [iac]
+[INFO] 15:39:34.533 There are no files to be analyzed for the Java language
+[INFO] 15:39:34.534 Sensor Java Config Sensor [iac] (done) | time=226ms
+[INFO] 15:39:34.534 Sensor IaC Docker Sensor [iac]
+[INFO] 15:39:34.535 There are no files to be analyzed for the Docker language
+[INFO] 15:39:34.541 Sensor IaC Docker Sensor [iac] (done) | time=7ms
+[INFO] 15:39:34.542 Sensor TextAndSecretsSensor [text]
+[INFO] 15:39:35.528 Available processors: 6
+[INFO] 15:39:35.528 Using 6 threads for analysis.
+[INFO] 15:39:48.772 Start fetching files for the text and secrets analysis
+[INFO] 15:39:49.979 Using Git CLI to retrieve untracked files
+[INFO] 15:39:56.813 Retrieving language associated files and files included via "sonar.text.inclusions" that are tracked by git
+[INFO] 15:39:56.859 Starting the text and secrets analysis
+[INFO] 15:39:57.148 3 source files to be analyzed for the text and secrets analysis
+[INFO] 15:39:57.724 3/3 source files have been analyzed for the text and secrets analysis
+[INFO] 15:39:58.112 Sensor TextAndSecretsSensor [text] (done) | time=23570ms
+[INFO] 15:39:58.833 ------------- Run sensors on project
+[INFO] 15:40:17.194 Sensor JavaProjectSensor [java]
+[INFO] 15:40:19.333 Sensor JavaProjectSensor [java] (done) | time=2139ms
+[INFO] 15:40:19.410 Sensor Zero Coverage Sensor
+[INFO] 15:40:21.296 Sensor Zero Coverage Sensor (done) | time=1887ms
+[INFO] 15:40:21.296 Sensor Java CPD Block Indexer
+[INFO] 15:40:23.701 Sensor Java CPD Block Indexer (done) | time=2399ms
+[INFO] 15:40:23.702 ------------- Gather SCA dependencies on project
+[INFO] 15:40:23.869 Dependency analysis skipped
+[INFO] 15:40:25.133 SCM Publisher SCM provider for this project is: git
+[INFO] 15:40:25.599 SCM Publisher 1 source file to be analyzed
+[INFO] 15:40:36.260 
+[INFO] 15:40:46.261 
+[INFO] 15:40:56.532 
+[INFO] 15:41:06.534 
+[INFO] 15:41:16.539 
+[INFO] 15:41:23.735 SCM Publisher 1/1 source file have been analyzed (done) | time=57546ms
+[INFO] 15:41:24.055 CPD Executor Calculating CPD for 1 file
+[INFO] 15:41:24.970 CPD Executor CPD calculation finished (done) | time=853ms
+[INFO] 15:41:25.335 SCM revision ID 'dec8fb59d4b4211c9d9765866c01870d629f4a9f'
+[INFO] 15:41:29.437 Analysis report generated in 3154ms, dir size=269.3 kB
+[INFO] 15:41:30.598 Analysis report compressed in 1152ms, zip size=33.3 kB
+[INFO] 15:41:34.242 Analysis report uploaded in 3623ms
+[INFO] 15:41:34.389 ANALYSIS SUCCESSFUL, you can find the results at: http://10.0.2.15:9000/dashboard?id=codeby-devops-lesson27
+[INFO] 15:41:34.406 Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[INFO] 15:41:34.406 More about the report processing at http://10.0.2.15:9000/api/ce/task?id=71be70b4-75fc-4a25-a44b-357fead1da6a
+[INFO] 15:41:34.612 Analysis total time: 3:24.657 s
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  06:58 min
+[INFO] Finished at: 2025-12-19T15:41:34+03:00
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy jenkins)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] dir
+Running in /home/kali/jenkins-agent/workspace/multi-build_lesson27/lesson27/hello-jenkins
+[Pipeline] {
+[Pipeline] sh
++ java -jar target/my-app-1.0-SNAPSHOT.jar
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Quality Gate)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timeout
+Timeout set to expire in 5 min 0 sec
+[Pipeline] {
+[Pipeline] waitForQualityGate
+Checking status of SonarQube task '71be70b4-75fc-4a25-a44b-357fead1da6a' on server 'sonarqube'
+SonarQube task '71be70b4-75fc-4a25-a44b-357fead1da6a' status is 'IN_PROGRESS'
+SonarQube task '71be70b4-75fc-4a25-a44b-357fead1da6a' status is 'SUCCESS'
+SonarQube task '71be70b4-75fc-4a25-a44b-357fead1da6a' completed. Quality gate is 'ERROR'
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ ls **/target/*.jar
++ echo 
+[Pipeline] echo
+No JAR artifacts to archive.
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: Pipeline aborted due to quality gate failure: ERROR
+
+GitHub has been notified of this commit’s build result
+
+Finished: FAILURE
