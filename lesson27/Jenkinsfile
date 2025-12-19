@@ -1,0 +1,173 @@
+pipeline {
+    agent { label 'maven' }
+
+    tools {
+        maven 'Maven3'
+        jdk   'JDK25'
+    }
+
+    environment {
+        APPS = 'lesson27/simple-java-maven-app,lesson27/hello-jenkins,lesson27/hello-devops'
+    }
+
+    stages {
+        stage('Detect changes') {
+            steps {
+                script {
+                    def diffRaw = sh(
+                        script: 'git diff --name-only HEAD~1 HEAD || git diff --name-only HEAD',
+                        returnStdout: true
+                    ).trim()
+
+                    def diff = diffRaw ? diffRaw.split('\n') as List : []
+                    echo "Changed files: ${diff}"
+
+                    def apps = env.APPS.split(',') as List
+                    def changedAppsList = []
+
+                    apps.each { app ->
+                        if (diff.any { it.startsWith("${app}/") }) {
+                            changedAppsList << app
+                        }
+                    }
+
+                    if (changedAppsList.isEmpty() && diff.any { it.endsWith('Jenkinsfile') }) {
+                        changedAppsList = apps
+                        echo "Only Jenkinsfile changed, building all apps: ${changedAppsList}"
+                    }
+
+                    env.CHANGED_APPS = changedAppsList.join(',')
+                    echo "CHANGED_APPS = '${env.CHANGED_APPS}'"
+                }
+            }
+        }
+
+        stage('Build, Test & Sonar in parallel') {
+            when {
+                expression { return env.CHANGED_APPS?.trim() }
+            }
+            parallel {
+                stage('simple-java-maven-app') {
+                    when {
+                        expression {
+                            env.CHANGED_APPS.split(',').contains('lesson27/simple-java-maven-app')
+                        }
+                    }
+                    stages {
+                        stage('Build & Sonar simple') {
+                            steps {
+                                dir('lesson27/simple-java-maven-app') {
+                                    withSonarQubeEnv('sonarqube') {
+                                        sh '''
+                                          mvn -B clean verify sonar:sonar \
+                                            -Dsonar.projectKey=codeby-devops-lesson27 \
+                                            -Dsonar.projectName="codeby-devops-lesson27" \
+                                            -Dsonar.java.binaries=target/classes
+                                        '''
+                                    }
+                                }
+                            }
+                        }
+                        stage('Deploy simple') {
+                            steps {
+                                dir('lesson27/simple-java-maven-app') {
+                                    sh 'java -jar target/*.jar &'
+                                }
+                            }
+                        }
+                    }
+                }
+
+                stage('hello-jenkins') {
+                    when {
+                        expression {
+                            env.CHANGED_APPS.split(',').contains('lesson27/hello-jenkins')
+                        }
+                    }
+                    stages {
+                        stage('Build & Sonar jenkins') {
+                            steps {
+                                dir('lesson27/hello-jenkins') {
+                                    withSonarQubeEnv('sonarqube') {
+                                        sh '''
+                                          mvn -B clean verify sonar:sonar \
+                                            -Dsonar.projectKey=codeby-devops-lesson27 \
+                                            -Dsonar.projectName="codeby-devops-lesson27" \
+                                            -Dsonar.java.binaries=target/classes
+                                        '''
+                                    }
+                                }
+                            }
+                        }
+                        stage('Deploy jenkins') {
+                            steps {
+                                dir('lesson27/hello-jenkins') {
+                                    sh 'java -jar target/*.jar &'
+                                }
+                            }
+                        }
+                    }
+                }
+
+                stage('hello-devops') {
+                    when {
+                        expression {
+                            env.CHANGED_APPS.split(',').contains('lesson27/hello-devops')
+                        }
+                    }
+                    stages {
+                        stage('Build & Sonar devops') {
+                            steps {
+                                dir('lesson27/hello-devops') {
+                                    withSonarQubeEnv('sonarqube') {
+                                        sh '''
+                                          mvn -B clean verify sonar:sonar \
+                                            -Dsonar.projectKey=codeby-devops-lesson27 \
+                                            -Dsonar.projectName="codeby-devops-lesson27" \
+                                            -Dsonar.java.binaries=target/classes
+                                        '''
+                                    }
+                                }
+                            }
+                        }
+                        stage('Deploy devops') {
+                            steps {
+                                dir('lesson27/hello-devops') {
+                                    sh 'java -jar target/*.jar &'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            when {
+                expression { return env.CHANGED_APPS?.trim() }
+            }
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    // упадёт весь pipeline, если хотя бы один анализ с FAILED gate
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                def jars = sh(
+                    script: 'ls **/target/*.jar 2>/dev/null || echo ""',
+                    returnStdout: true
+                ).trim()
+                if (jars) {
+                    archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                } else {
+                    echo 'No JAR artifacts to archive.'
+                }
+            }
+        }
+    }
+}
