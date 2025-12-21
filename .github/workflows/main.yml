@@ -2,7 +2,7 @@ name: Maven CI/CD
 
 on:
   push:
-    branches: [ lesson28/lesson28]
+    branches: [ lesson28]
   pull_request:
     branches: [ lesson28 ]
 
