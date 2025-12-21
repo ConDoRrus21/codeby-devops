@@ -20,7 +20,9 @@ jobs:
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
+        distribution: 'temurin'
         java-version: 17
+        cache: 'maven'
     
     - name: Cache the Maven packages to speed up build
       uses: actions/cache@v3
