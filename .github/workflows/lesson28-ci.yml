@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
+    - name: Checkout
     - uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -31,9 +32,12 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
-    - name: Build project with Maven
-      run: mvn -B package --file pom.xml
-
+    - name: Build hello-world
+      run: mvn -B package --file lesson28/hello-world/pom.xml
+    - name: Build hello-jenkins
+      run: mvn -B package --file lesson28/hello-jenkins/pom.xml
+    - name: Build hello-devops
+      run: mvn -B package --file lesson28/hello-devops/pom.xml
 
   publish-job:
       runs-on: ubuntu-latest
@@ -43,7 +47,9 @@ jobs:
         - uses: actions/setup-java@v4
           with:
             java-version: 17
-        - run: mvn -B package --file pom.xml -DskipTests
+        - run: mvn -B package --file lesson28/hello-world/pom.xml -DskipTests
+        - run: mvn -B package --file lesson28/hello-jenkins/pom.xml -DskipTests
+        - run: mvn -B package --file lesson28/hello-devops/pom.xml -DskipTests
         - run: mkdir staging && cp target/*.jar staging
         - uses: actions/upload-artifact@v4
           with:
