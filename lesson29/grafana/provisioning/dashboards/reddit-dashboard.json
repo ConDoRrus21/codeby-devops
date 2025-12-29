@@ -1,0 +1,85 @@
+{
+  "id": null,
+  "uid": "reddit-app",
+  "title": "Reddit App",
+  "tags": ["reddit", "blackbox", "monitoring"],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 3,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "UI Requests Total (observed probes)",
+      "id": 1,
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 6 },
+      "targets": [
+        {
+          "expr": "sum(count_over_time(probe_success{job=\"blackbox-ui\"}[15m]))",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"] }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "UI Traffic (probes/min) (/)",
+      "id": 2,
+      "gridPos": { "x": 0, "y": 6, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "count_over_time(probe_success{job=\"blackbox-ui\", instance=\"http://ui:9292/\"}[1m])",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "UI Traffic (probes/min) (/new)",
+      "id": 3,
+      "gridPos": { "x": 12, "y": 6, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "count_over_time(probe_success{job=\"blackbox-ui\", instance=\"http://ui:9292/new\"}[1m])",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "UI Response Time p90 (/)",
+      "id": 4,
+      "gridPos": { "x": 0, "y": 14, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "quantile_over_time(0.9, probe_duration_seconds{job=\"blackbox-ui\", instance=\"http://ui:9292/\"}[5m])",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "UI Response Time p90 (/new)",
+      "id": 5,
+      "gridPos": { "x": 12, "y": 14, "w": 12, "h": 8 },
+      "targets": [
+        {
+          "expr": "quantile_over_time(0.9, probe_duration_seconds{job=\"blackbox-ui\", instance=\"http://ui:9292/new\"}[5m])",
+          "refId": "A"
+        }
+      ]
+    }
+  ],
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  }
+}
