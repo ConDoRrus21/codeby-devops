@@ -1,0 +1,64 @@
+services:
+  ui:
+    image: ghcr.io/codeby-devops/ui:bug
+    container_name: ui
+    ports:
+      - 9292:9292
+    environment:
+      - POST_SERVICE_HOST=post
+      - POST_SERVICE_PORT=5000
+      - COMMENT_SERVICE_HOST=comment
+      - COMMENT_SERVICE_PORT=9292
+      - ZIPKIN_ENABLED=true
+    depends_on:
+      - comment
+      - post
+    networks:
+      - logging
+
+  post:
+    image: ghcr.io/codeby-devops/post:bug
+    container_name: post
+    environment:
+      - POST_DATABASE_HOST=post_db
+      - POST_DATABASE=posts
+      - ZIPKIN_ENABLED=true
+    depends_on:
+      - post_db
+    ports:
+      - 5000:5000
+    networks:
+      - logging
+
+  comment:
+    image: ghcr.io/codeby-devops/comment:bug
+    container_name: comment
+    environment:
+      - COMMENT_DATABASE_HOST=post_db
+      - COMMENT_DATABASE=comments
+      - ZIPKIN_ENABLED=true
+    depends_on:
+      - post_db
+    networks:
+      - logging
+
+  post_db:
+    image: mongo:4.4
+    container_name: post_db
+
+    volumes:
+      - ./data/post_db:/data/db
+    networks:
+      - logging
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+    networks:
+      - logging
+
+networks:
+  logging:
+    driver: bridge
