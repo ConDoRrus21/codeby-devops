@@ -6,6 +6,6 @@ RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /diplom-app
-COPY --from=build /diplom-app/target/*.jar diplom-app.jar
+COPY --from=build /diplom-app/target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "diplom-app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
