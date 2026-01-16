@@ -13,7 +13,9 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,37 +31,41 @@ jobs:
         working-directory: final/diplom-app
         run: mvn -B clean package -DskipTests
 
-      - name: Upload App artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: diplom-app-jar
-          path: final/diplom-app/target/*.jar
+      - name: Debug JAR
+        working-directory: final/diplom-app
+        run: ls -la target/
 
-  build-docker-image:
-    name: Publish to github registry
-    runs-on: ubuntu-latest
-    needs: [build_and_test]
+#      - name: Upload App artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: diplom-app-jar
+#          path: final/diplom-app/target/*.jar
 
-    permissions:
-      contents: read
-      packages: write
+#  build-docker-image:
+#    name: Publish to github registry
+#    runs-on: ubuntu-latest
+#    needs: [build_and_test]
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+#    permissions:
+#      contents: read
+#      packages: write
 
-      - name: Download diplom-app artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: diplom-app-jar
-          path: final/diplom-app/target
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+
+#      - name: Download diplom-app artifact
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: diplom-app-jar
+#          path: final/diplom-app/target
 
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Set up Docker Buildx
@@ -74,7 +80,7 @@ jobs:
           push: true
           tags: |
             
-            ghcr.io/condorrus21/codeby-devops:diplom-app:latest
-            ghcr.io/condorrus21/codeby-devops:diplom-app:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/codeby-devops:diplom-app-${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/codeby-devops:diplom-app-latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
