@@ -36,7 +36,7 @@ jobs:
           name: surefire-reports
           path: final/diplom-app/target/surefire-reports/**
 
-      - name: SonarCloud analys
+      - name: SonarCloud analysis
         working-directory: final/diplom-app
         run: >
           mvn -B
