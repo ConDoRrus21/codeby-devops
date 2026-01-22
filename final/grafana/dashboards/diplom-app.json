@@ -1,0 +1,131 @@
+{
+  "title": "Diplom App мониторинг",
+  "panels": [
+    {
+      "title": "Статус доступности diplom-app",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "probe_success{job=\"diplom-app\"}",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": ["lastNotNull"]
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {"text": "DOWN"},
+              "type": "value",
+              "value": 0
+            },
+            {
+              "options": {"text": "UP"},
+              "type": "value",
+              "value": 1
+            }
+          ],
+          "thresholds": {
+            "steps": [
+              {"color": "red", "value": null},
+              {"color": "green", "value": 1}
+            ]
+          }
+        }
+      },
+      "gridPos": {"h": 4, "w": 6, "x": 0, "y": 0}
+    },
+    {
+      "title": "Время отклика (ms)",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "probe_duration_seconds{job=\"diplom-app\"} * 1000",
+          "legendFormat": "Response time"
+        }
+      ],
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}},
+      "fieldConfig": {"defaults": {"unit": "ms"}},
+      "gridPos": {"h": 4, "w": 6, "x": 6, "y": 0}
+    },
+    {
+      "title": "Uptime за 24ч (%)",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "(count(probe_success{job=\"diplom-app\"} == 1) / count(probe_success{job=\"diplom-app\"})) * 100",
+          "legendFormat": "Uptime"
+        }
+      ],
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}},
+      "fieldConfig": {"defaults": {"unit": "percent"}},
+      "gridPos": {"h": 4, "w": 6, "x": 12, "y": 0}
+    },
+    {
+      "title": "HTTP код",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "probe_http_status_code{job=\"diplom-app\"}",
+          "legendFormat": "Status"
+        }
+      ],
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}},
+      "gridPos": {"h": 4, "w": 6, "x": 18, "y": 0}
+    },
+    {
+      "title": "Память контейнера (MB)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "container_memory_usage_bytes{container_label_com_docker_compose_service=\"diplom-app\"} / 1024 / 1024",
+          "legendFormat": "Memory"
+        }
+      ],
+      "fieldConfig": {"defaults": {"unit": "decbytes"}},
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 4}
+    },
+    {
+      "title": "CPU использование (%)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_service=\"diplom-app\"}[5m]) * 100",
+          "legendFormat": "CPU"
+        }
+      ],
+      "fieldConfig": {"defaults": {"unit": "percent"}},
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 4}
+    },
+    {
+      "title": "Время отклика - тренд (ms)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "probe_duration_seconds{job=\"diplom-app\"} * 1000",
+          "legendFormat": "Response time"
+        }
+      ],
+      "fieldConfig": {"defaults": {"unit": "ms"}},
+      "gridPos": {"h": 8, "w": 24, "x": 0, "y": 12}
+    }
+  ],
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "refresh": "30s",
+  "tags": ["diplom"],
+  "templating": {
+    "list": []
+  },
+  "schemaVersion": 38,
+  "version": 1,
+  "style": "dark",
+  "timezone": "browser",
+  "uid": "diplom-app"
+}

@@ -1,0 +1,119 @@
+services:
+  diplom-app:
+    image: ghcr.io/condorrus21/codeby-devops:diplom-app-latest
+    container_name: diplom-app
+    ports:
+      - "8082:8080"
+    networks:
+      - diplom
+    environment:
+      - SERVER_ADDRESS=0.0.0.0
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 172.20.0.1:24224
+        tag: diplom-app
+    depends_on:
+      fluentd:
+        condition: service_healthy
+
+  prometheus:
+    image: prom/prometheus:v2.55.0
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - diplom
+
+  grafana:
+    image: grafana/grafana:11.0.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - diplom
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    container_name: cadvisor
+    ports:
+      - "8081:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - diplom
+
+  blackbox:
+    image: prom/blackbox-exporter:v0.25.0
+    container_name: blackbox
+    volumes:
+      - ./prometheus/blackbox.yml:/etc/blackbox_exporter/config.yml
+    command:
+      - --config.file=/etc/blackbox_exporter/config.yml
+    ports:
+      - "9115:9115"
+    networks:
+      - diplom
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:6.8.20
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    networks:
+      - diplom
+
+  kibana:
+    container_name: kibana
+    image: kibana:6.8.20
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - diplom
+
+  fluentd:
+    container_name: fluentd
+    build:
+      context: .
+      dockerfile: fluentd-image/Dockerfile
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    volumes:
+      - ./fluentd:/fluentd/etc
+    depends_on:
+      - elasticsearch
+    healthcheck:
+      test: [ "CMD-SHELL", "ruby -rsocket -e 'TCPSocket.new(\"127.0.0.1\",24224).close'" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - diplom
+
+networks:
+  diplom:
+    driver: bridge
+
+volumes:
+  grafana-storage:
